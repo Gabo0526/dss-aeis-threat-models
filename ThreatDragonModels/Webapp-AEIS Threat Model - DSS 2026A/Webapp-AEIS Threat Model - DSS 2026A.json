@@ -1,0 +1,32 @@
+{
+  "version": "2.6.2",
+  "summary": {
+    "title": "Webapp-AEIS Threat Model - DSS 2026A",
+    "owner": "\tGabriel Vásconez (Gabo0526)",
+    "description": "Sistema web monolítico Spring Boot 3.5 / Java 17 para la gestión y alquiler de casilleros\nde la AEIS-EPN. Integra autenticación con verificación por correo, control de acceso\nbasado en roles (USER/ADMIN), pagos a través de la pasarela PayPhone con confirmación\nvía webhook, y persistencia en MySQL. Despliegue en Azure App Service con pipeline\nDevSecOps en Azure Pipelines (SonarCloud + JaCoCo). Este modelo cubre los flujos de\nautenticación, alquiler, pago y administración del sistema, así como las fronteras de\nconfianza entre Internet, la zona de aplicación, la base de datos y los servicios\nexternos PayPhone y SMTP.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "Dylan Granizo"
+      },
+      {
+        "name": "René Guzmán"
+      },
+      {
+        "name": "Gianfranco Pupiales"
+      },
+      {
+        "name": "Gabriel Vásconez"
+      },
+      {
+        "name": "Jeremy Yugsi"
+      }
+    ],
+    "diagrams": [],
+    "diagramTop": 0,
+    "reviewer": "Gabriela Lorena Suntaxi Oña (docente DSS)",
+    "threatTop": 0
+  }
+}
