@@ -1,10 +1,10 @@
 {
   "version": "2.4",
   "summary": {
-    "title": "Webapp-AEIS Threat Model - DSS 2026A",
+    "title": "Webapp-AEIS Threat Model - Sistema Planificado (DSS 2026A)",
     "owner": "Gabriel Vasconez (Gabo0526)",
     "reviewer": "Gabriela Lorena Suntaxi Ona",
-    "description": "Sistema web monolitico Spring Boot 3.5 / Java 17 para la gestion y alquiler de casilleros de la AEIS-EPN. Cubre flujos de autenticacion, alquiler, pago via PayPhone y administracion.",
+    "description": "Modelo de amenazas del sistema AEIS planificado para el segundo bimestre. Incorpora WAF perimetral (INF-02), autenticacion via JWT firmados con RS256 (ACC-02), Azure Key Vault para gestion de secretos (INF-01), cifrado AES-256 en reposo (CRY-02), bcrypt para contrasenas (CRY-03), TLS 1.2+ en transito (CRY-01), RBAC con tres roles (Estudiante, Registrador, Administrador) y auditoria inmutable (AUD-01). El sistema actual webapp-aeis es el punto de partida y se refactorizara hacia esta arquitectura durante el segundo bimestre.",
     "id": 0
   },
   "detail": {
@@ -28,22 +28,22 @@
     "diagrams": [
       {
         "id": 0,
-        "title": "AEIS - DFD Nivel 1",
+        "title": "AEIS - DFD Sistema Planificado",
         "diagramType": "STRIDE",
         "placeholder": "New diagram",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.0.0",
         "cells": [
           {
-            "id": "9a52dd35-40d0-4680-b6ef-98d3a63fc79f",
+            "id": "c112a958-baae-4994-8f27-b9febeb71ccf",
             "shape": "actor",
             "position": {
-              "x": 60,
-              "y": 420
+              "x": 80,
+              "y": 600
             },
             "size": {
-              "width": 180,
-              "height": 80
+              "width": 200,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -55,21 +55,44 @@
               "name": "EE-01 Estudiante",
               "description": "EE-01 Estudiante",
               "outOfScope": false,
-              "threats": [],
+              "threats": [
+                {
+                  "id": "12deb53a-6dbd-4416-a14c-a9d0989d0161",
+                  "number": 4,
+                  "title": "T-04: Phishing del estudiante para captura de credenciales",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "El atacante envia correo institucional falso solicitando credenciales o suplanta la pagina de login para capturar usuario+password antes de la emision del JWT.",
+                  "mitigation": "Habilitar SPF/DKIM/DMARC en el dominio institucional. Educacion del usuario. Considerar 2FA TOTP en una fase posterior. Mostrar dominio canonico en la barra del navegador.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "b81e8288-be60-476e-b432-4962a453c006",
+                  "number": 14,
+                  "title": "T-14: Robo de JWT por XSS o malware en el navegador del usuario",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Aun usando cookie httpOnly, un XSS persistente podria realizar peticiones autenticadas en nombre de la victima (no se roba el token pero se abusa de su sesion).",
+                  "mitigation": "Cookie con httpOnly + Secure + SameSite=Strict. Content-Security-Policy estricta. Sanear toda entrada de usuario en plantillas Thymeleaf. Renovacion del JWT con refresh token de un solo uso.",
+                  "modelType": "STRIDE"
+                }
+              ],
               "providesAuthentication": false
             },
             "zIndex": 10
           },
           {
-            "id": "d14c7435-bfbc-48cb-9c3a-4819128965f9",
+            "id": "5d7d6c84-dff6-475a-b288-d7d6bb132963",
             "shape": "actor",
             "position": {
-              "x": 60,
-              "y": 900
+              "x": 80,
+              "y": 1180
             },
             "size": {
-              "width": 180,
-              "height": 80
+              "width": 200,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -87,25 +110,25 @@
             "zIndex": 10
           },
           {
-            "id": "6852caaa-a077-450d-b2f7-ff9a5ed6efb2",
+            "id": "c760978f-0dd6-49fb-8509-ab580f633ac2",
             "shape": "actor",
             "position": {
-              "x": 60,
-              "y": 1200
+              "x": 80,
+              "y": 900
             },
             "size": {
-              "width": 180,
-              "height": 80
+              "width": 200,
+              "height": 90
             },
             "attrs": {
               "label": {
-                "text": "EE-05 Atacante"
+                "text": "EE-03 Registrador"
               }
             },
             "data": {
               "type": "tm.Actor",
-              "name": "EE-05 Atacante",
-              "description": "EE-05 Atacante",
+              "name": "EE-03 Registrador",
+              "description": "EE-03 Registrador",
               "outOfScope": false,
               "threats": [],
               "providesAuthentication": false
@@ -113,347 +136,444 @@
             "zIndex": 10
           },
           {
-            "id": "2d08449d-44f1-4247-bd0b-0090f3976963",
+            "id": "a2dadb38-ce00-4c63-a89b-3a38c5c50778",
             "shape": "actor",
             "position": {
-              "x": 1900,
-              "y": 420
+              "x": 80,
+              "y": 1900
             },
             "size": {
-              "width": 180,
-              "height": 80
+              "width": 200,
+              "height": 90
             },
             "attrs": {
               "label": {
-                "text": "EE-03 PayPhone API"
+                "text": "EE-04 Atacante"
               }
             },
             "data": {
               "type": "tm.Actor",
-              "name": "EE-03 PayPhone API",
-              "description": "EE-03 PayPhone API",
+              "name": "EE-04 Atacante",
+              "description": "EE-04 Atacante",
+              "outOfScope": false,
+              "threats": [],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "cad505c0-e7da-432f-b34e-d124592dc6cd",
+            "shape": "actor",
+            "position": {
+              "x": 80,
+              "y": 2120
+            },
+            "size": {
+              "width": 200,
+              "height": 90
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-05 Pipeline DevSecOps"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-05 Pipeline DevSecOps",
+              "description": "EE-05 Pipeline DevSecOps",
               "outOfScope": true,
-              "threats": [],
-              "providesAuthentication": false
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "f183b58a-696a-4561-af5b-316d648530de",
-            "shape": "actor",
-            "position": {
-              "x": 1900,
-              "y": 200
-            },
-            "size": {
-              "width": 180,
-              "height": 80
-            },
-            "attrs": {
-              "label": {
-                "text": "EE-04 SMTP Gmail"
-              }
-            },
-            "data": {
-              "type": "tm.Actor",
-              "name": "EE-04 SMTP Gmail",
-              "description": "EE-04 SMTP Gmail",
-              "outOfScope": true,
               "threats": [
                 {
-                  "id": "1fd87d7c-09ad-45d0-b1ec-6a5fd309aa1d",
-                  "number": 21,
-                  "title": "T-21: Token de verificacion en query string",
+                  "id": "a7d01e83-a235-476e-b2d7-7d02e176ff61",
+                  "number": 24,
+                  "title": "T-24: Falla del SAST en detectar vulnerabilidades",
                   "status": "Open",
-                  "severity": "Low",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ],
-              "providesAuthentication": false
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "23955c65-ab85-4b2c-a76d-a206be30b4d8",
-            "shape": "process",
-            "position": {
-              "x": 540,
-              "y": 220
-            },
-            "size": {
-              "width": 180,
-              "height": 90
-            },
-            "attrs": {
-              "label": {
-                "text": "P-01 Registro y Verificacion"
-              }
-            },
-            "data": {
-              "type": "tm.Process",
-              "name": "P-01 Registro y Verificacion",
-              "description": "P-01 Registro y Verificacion",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "7b962d15-0d34-4dbd-bdbc-5cb2d563614e",
-                  "number": 1,
-                  "title": "T-01: Registro masivo con cedulas falsificadas",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Spoofing",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "SonarQube (DEV-01) podria no detectar todas las vulnerabilidades si los analizadores estan desactualizados o si se aplica un perfil de calidad permisivo.",
+                  "mitigation": "Configurar Quality Gate estricto: bloquear PR con vulnerabilidades Blocker o Critical. Combinar con Snyk o Dependabot para SCA. Revisar reglas semestralmente. Habilitar Secret Detection.",
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "03bba087-5c49-4a97-be0f-59a6465fcfa2",
-                  "number": 2,
-                  "title": "T-02: Enumeracion de cuentas por mensaje de error",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ],
-              "handlesCardPayment": false,
-              "isWebApplication": true,
-              "privilegeLevel": "User"
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "e8be6586-a8ab-4cde-9b6e-e1be13212a4b",
-            "shape": "process",
-            "position": {
-              "x": 540,
-              "y": 420
-            },
-            "size": {
-              "width": 180,
-              "height": 90
-            },
-            "attrs": {
-              "label": {
-                "text": "P-02 Login"
-              }
-            },
-            "data": {
-              "type": "tm.Process",
-              "name": "P-02 Login",
-              "description": "P-02 Login",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "2e9db7f8-6d2b-4fb1-87cb-a4eb450c2914",
-                  "number": 4,
-                  "title": "T-04: Credential stuffing en login",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Spoofing",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                },
-                {
-                  "id": "1aefb2e1-4a20-4aad-9fa7-b38aae7a4d2c",
-                  "number": 5,
-                  "title": "T-05: Enumeracion via mensajes de error diferenciados",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                },
-                {
-                  "id": "54c8e704-c2b6-4331-8bef-7c5730e49607",
-                  "number": 6,
-                  "title": "T-06: Falta de auditoria de logins",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Repudiation",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ],
-              "handlesCardPayment": false,
-              "isWebApplication": true,
-              "privilegeLevel": "User"
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "af5a6199-282c-4e6a-b831-684c6539238d",
-            "shape": "process",
-            "position": {
-              "x": 540,
-              "y": 620
-            },
-            "size": {
-              "width": 180,
-              "height": 90
-            },
-            "attrs": {
-              "label": {
-                "text": "P-03 Ver Casilleros"
-              }
-            },
-            "data": {
-              "type": "tm.Process",
-              "name": "P-03 Ver Casilleros",
-              "description": "P-03 Ver Casilleros",
-              "outOfScope": false,
-              "threats": [],
-              "handlesCardPayment": false,
-              "isWebApplication": true,
-              "privilegeLevel": "User"
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "0fc6de83-29b6-426e-b3e8-0898ad2d0359",
-            "shape": "process",
-            "position": {
-              "x": 920,
-              "y": 420
-            },
-            "size": {
-              "width": 180,
-              "height": 90
-            },
-            "attrs": {
-              "label": {
-                "text": "P-04 Pre-Alquiler"
-              }
-            },
-            "data": {
-              "type": "tm.Process",
-              "name": "P-04 Pre-Alquiler",
-              "description": "P-04 Pre-Alquiler",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "5cc40ac3-3f34-4123-86d5-3097129d023d",
-                  "number": 7,
-                  "title": "T-07: Multiples alquileres por usuario",
+                  "id": "a1f3596f-699f-408c-8b4f-8906da8edb55",
+                  "number": 25,
+                  "title": "T-25: Compromiso del pipeline por credenciales filtradas",
                   "status": "Open",
                   "severity": "High",
                   "type": "Elevation of privilege",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                },
-                {
-                  "id": "e7605f10-e1db-4b0d-852c-e0500f951942",
-                  "number": 8,
-                  "title": "T-08: DoS por agotamiento de casilleros",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Denial of service",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                },
-                {
-                  "id": "5928470e-d618-4953-aad2-93c116bf5d23",
-                  "number": 9,
-                  "title": "T-09: Token PayPhone publico expuesto en HTML",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                },
-                {
-                  "id": "b590bb59-0144-4fca-8f43-f5e90d034ee9",
-                  "number": 25,
-                  "title": "T-25: Repudiacion del pre-alquiler por falta de auditoria",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Repudiation",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "description": "Si las credenciales del Service Principal de Azure DevOps son filtradas (ej. en un log publico o un fork), un atacante podria inyectar codigo malicioso en el pipeline y desplegarlo a produccion sin pasar por revision humana.",
+                  "mitigation": "Pipeline secrets en Variable Groups vinculados a Key Vault. Service Principal con menor privilegio. Branch protection rules en main: minimo 2 revisores. Required signed commits. Audit log de cambios en pipelines.",
                   "modelType": "STRIDE"
                 }
               ],
-              "handlesCardPayment": true,
-              "isWebApplication": true,
-              "privilegeLevel": "User"
+              "providesAuthentication": false
             },
             "zIndex": 10
           },
           {
-            "id": "0f074904-b3bb-4fb7-bfd0-8077ed98ccd2",
-            "shape": "process",
+            "id": "3d84a903-926a-4cb4-ba92-c2269c04b4f1",
+            "shape": "actor",
             "position": {
-              "x": 1320,
-              "y": 420
+              "x": 2700,
+              "y": 600
             },
             "size": {
-              "width": 180,
+              "width": 200,
               "height": 90
             },
             "attrs": {
               "label": {
-                "text": "P-05 Webhook PayPhone"
+                "text": "EE-06 PayPhone API"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-06 PayPhone API",
+              "description": "EE-06 PayPhone API",
+              "outOfScope": true,
+              "threats": [
+                {
+                  "id": "461d165a-2755-4898-baba-bb5e5268e3b2",
+                  "number": 16,
+                  "title": "T-16: Filtracion del token publico de PayPhone via HTML del checkout",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "El token publico de PayPhone se renderiza en el HTML del checkout para inicializar el SDK. Aunque es token publico, su filtracion masiva podria facilitar abusos al gateway.",
+                  "mitigation": "Documentar que es token publico (no secret). Rotacion periodica via PayPhone admin. Monitorear uso anomalo en el dashboard de PayPhone.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "4409647c-bcca-4aa6-9dbd-31a9c69a2f46",
+            "shape": "actor",
+            "position": {
+              "x": 2700,
+              "y": 280
+            },
+            "size": {
+              "width": 200,
+              "height": 90
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-07 SMTP (Gmail)"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-07 SMTP (Gmail)",
+              "description": "EE-07 SMTP (Gmail)",
+              "outOfScope": true,
+              "threats": [],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "73306469-719a-4200-9c2a-4a75c1667946",
+            "shape": "actor",
+            "position": {
+              "x": 2700,
+              "y": 900
+            },
+            "size": {
+              "width": 200,
+              "height": 90
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-08 Azure Key Vault"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-08 Azure Key Vault",
+              "description": "EE-08 Azure Key Vault",
+              "outOfScope": true,
+              "threats": [
+                {
+                  "id": "bb565897-771e-420a-afe2-f9c1699f6234",
+                  "number": 13,
+                  "title": "T-13: Compromiso del Key Vault por mala configuracion IAM",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Una asignacion IAM excesivamente permisiva (ej. 'Key Vault Administrator' a una identidad de aplicacion) expondria la clave privada de firma JWT, la clave AES-256 y los Bearer de PayPhone simultaneamente.",
+                  "mitigation": "Aplicar principio de menor privilegio: cada identidad solo lee los secretos que necesita. Usar Managed Identity + RBAC. Revisar trimestralmente las asignaciones. Habilitar Defender for Key Vault. Alertas en accesos fuera de patron.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "629b168e-2f93-43e6-b968-0a053e11c1e7",
+            "shape": "process",
+            "position": {
+              "x": 540,
+              "y": 900
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-01 WAF"
               }
             },
             "data": {
               "type": "tm.Process",
-              "name": "P-05 Webhook PayPhone",
-              "description": "P-05 Webhook PayPhone",
+              "name": "P-01 WAF",
+              "description": "P-01 WAF",
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "9abab36f-9274-4e89-84e6-a530cec80000",
-                  "number": 10,
-                  "title": "T-10: Webhook publico sin autenticacion fuerte",
+                  "id": "746b5c02-8c51-41a5-87bb-a88a886d41ce",
+                  "number": 2,
+                  "title": "T-02: Bypass del WAF por reglas mal configuradas",
                   "status": "Open",
                   "severity": "High",
                   "type": "Spoofing",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "description": "Si las reglas OWASP Core Rule Set del WAF no estan correctamente afinadas, un atacante podria evadir las inspecciones e inyectar payloads (SQLi, XSS) directamente al monolito. INF-02 mitiga el riesgo solo si las reglas son comprehensivas.",
+                  "mitigation": "Activar OWASP CRS 3.x con modo Anomaly Scoring en nivel Paranoid 2. Realizar tuning con OWASP ZAP en staging. Monitorear bloqueos y excepciones falsas semanalmente.",
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "f2be3e81-f17b-4054-b2ac-dbc900f6bca9",
-                  "number": 11,
-                  "title": "T-11: isPaid permisivo no compara amount",
+                  "id": "6eac2a73-d6ad-4af3-b85f-8569f75dba7c",
+                  "number": 17,
+                  "title": "T-17: Logs del WAF con datos de PII de peticiones bloqueadas",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "El WAF registra peticiones bloqueadas con su payload completo, que puede contener PII de los usuarios.",
+                  "mitigation": "Configurar mask de campos sensibles en los logs del WAF. Restringir acceso a la consola del WAF al equipo de seguridad. Retencion 30 dias maximo.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "300c8321-1821-455a-bbd4-763168c90d7b",
+                  "number": 18,
+                  "title": "T-18: DoS perimetral por flood al WAF",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Un atacante distribuido (botnet) podria saturar las capacidades del WAF y degradar el servicio para usuarios legitimos.",
+                  "mitigation": "Suscribir Azure DDoS Protection Standard. Configurar rate-limit por IP + geo-blocking de paises sin presencia. Auto-scaling del WAF. Caching estatico en CDN.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "b61786bb-1596-40aa-9cf9-bdb176d8d4b2",
+                  "number": 23,
+                  "title": "T-23: SSRF desde el monolito hacia Azure Key Vault",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Si una funcion del monolito acepta URLs sin validar (ej. generacion de PDF, fetching de imagenes), un atacante podria forzar al backend a hacer requests al Instance Metadata Service de Azure y robar el access token de la Managed Identity, escalando a control del Key Vault.",
+                  "mitigation": "Whitelist de hosts permitidos en cualquier funcionalidad de fetch. Bloquear 169.254.169.254 (IMDS) por regla de red. Validar y resolver URLs antes de hacer la peticion. Usar Managed Identity con menor privilegio posible.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "System"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "d352224b-2be1-40af-9e43-3f607dbf0902",
+            "shape": "process",
+            "position": {
+              "x": 900,
+              "y": 280
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-02 Registro y Verificacion"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-02 Registro y Verificacion",
+              "description": "P-02 Registro y Verificacion",
+              "outOfScope": false,
+              "threats": [],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "c0c9ca87-3ea6-4ddd-86c4-d93fb7018a64",
+            "shape": "process",
+            "position": {
+              "x": 900,
+              "y": 600
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-03 Autenticacion y JWT"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-03 Autenticacion y JWT",
+              "description": "P-03 Autenticacion y JWT",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "209d5bda-47a0-4048-b423-82fdde9b0972",
+                  "number": 1,
+                  "title": "T-01: Suplantacion de identidad por robo de clave privada RS256",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Si la clave privada usada para firmar los JWT en Azure Key Vault es exfiltrada, un atacante puede emitir tokens validos para cualquier usuario, incluido el rol Administrador. La firma asimetrica RS256 (ACC-02) protege siempre y cuando la clave permanezca confidencial.",
+                  "mitigation": "Restringir el acceso al Key Vault mediante RBAC IAM estricto + Managed Identity de Azure. Rotar la clave de firma cada 30 dias. Habilitar logging de Key Vault y alertas SIEM ante acceso anomalo. Implementar revocacion de JWT via lista negra de jti.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "ccefdc77-5d8b-4036-9449-c9af508c5733",
+                  "number": 5,
+                  "title": "T-05: Aceptacion de JWT con algoritmo none",
                   "status": "Open",
                   "severity": "High",
                   "type": "Tampering",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "description": "Si la libreria de JWT permite el algoritmo 'none' o no valida estrictamente el header 'alg', un atacante puede falsificar tokens sin necesidad de la clave privada.",
+                  "mitigation": "Forzar 'alg=RS256' explicitamente en el verificador. Lista blanca de algoritmos. Bloquear 'alg=none' y los algoritmos simetricos (HS256) que permiten downgrade attacks. Test de seguridad explicito (CVE-2018-1000531).",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666",
+            "shape": "process",
+            "position": {
+              "x": 900,
+              "y": 900
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-04 Validacion JWT (RBAC)"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-04 Validacion JWT (RBAC)",
+              "description": "P-04 Validacion JWT (RBAC)",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "441d011d-cc69-465c-bd26-3cc9d2b0c200",
+                  "number": 3,
+                  "title": "T-03: Suplantacion del rol Registrador por escalada de privilegios",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Un Estudiante autenticado podria modificar claims del JWT o explotar un bug en la validacion de roles para acceder al endpoint /registrador/* y crear alquileres en efectivo no autorizados.",
+                  "mitigation": "Validar firma RS256 y exp en cada peticion. No confiar en claims sin firmar. Validar role contra una whitelist (no in array). Test unitario con casos negativos por cada rol.",
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "3510c1b7-9507-4912-bc8f-b38d88b42b5e",
-                  "number": 12,
-                  "title": "T-12: Sin evidencia criptografica de confirmacion",
+                  "id": "be4765a3-1928-49b4-88b7-dbd4feaa3f97",
+                  "number": 21,
+                  "title": "T-21: Escalada de privilegios por bug en la libreria de JWT",
                   "status": "Open",
-                  "severity": "Medium",
-                  "type": "Repudiation",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Una CVE en la libreria de JWT (jjwt o auth0 java-jwt) podria permitir falsificar tokens. Historia muestra varias CVE: CVE-2018-1000531, CVE-2022-21449, etc.",
+                  "mitigation": "Mantener la libreria actualizada (Dependabot + Renovate). Pin de version y verificacion de checksum. SCA (Software Composition Analysis) en el pipeline. Monitor CVE database con alertas.",
                   "modelType": "STRIDE"
-                },
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "System"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "f51da849-6c57-45e8-abdc-f712479ca6e3",
+            "shape": "process",
+            "position": {
+              "x": 1300,
+              "y": 600
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-05 Visualizacion Casilleros"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-05 Visualizacion Casilleros",
+              "description": "P-05 Visualizacion Casilleros",
+              "outOfScope": false,
+              "threats": [],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "0ead80d0-9539-4251-b546-1fd3770a9844",
+            "shape": "process",
+            "position": {
+              "x": 1300,
+              "y": 900
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-06 Pre-Alquiler"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-06 Pre-Alquiler",
+              "description": "P-06 Pre-Alquiler",
+              "outOfScope": false,
+              "threats": [
                 {
-                  "id": "80b5bc05-a092-4be6-92b0-10caa22d3f1a",
-                  "number": 13,
-                  "title": "T-13: Exposicion del Bearer token de PayPhone en transito",
+                  "id": "8901582e-989c-4999-a7b6-f55368758333",
+                  "number": 19,
+                  "title": "T-19: Agotamiento de casilleros por pre-alquileres masivos",
                   "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Un atacante autenticado puede reservar todos los casilleros (estado PENDING) creando pre-alquileres masivos antes de que expiren los 10 minutos, bloqueando a otros usuarios.",
+                  "mitigation": "Limitar 1 PreRental PENDING activo por usuario simultaneo. Rate-limit del endpoint a 1 peticion por minuto por usuario. Reducir expiracion a 5 minutos. Captcha tras N peticiones fallidas.",
                   "modelType": "STRIDE"
                 }
               ],
@@ -464,15 +584,157 @@
             "zIndex": 10
           },
           {
-            "id": "9af9ddd7-69a6-46d3-a532-bedd092dd301",
+            "id": "5f601765-3718-4147-b95c-5ec98e4b24aa",
             "shape": "process",
             "position": {
-              "x": 1320,
-              "y": 620
+              "x": 1300,
+              "y": 1180
             },
             "size": {
-              "width": 180,
-              "height": 90
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-07 Intercambio de Casilleros"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-07 Intercambio de Casilleros",
+              "description": "P-07 Intercambio de Casilleros",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "cd063b5e-3b54-431e-9f0f-7e38e0825bae",
+                  "number": 7,
+                  "title": "T-07: Intercambio fraudulento por manipulacion de identificadores",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Un atacante autenticado podria manipular el lockerId destino del intercambio para apropiarse de un casillero ajeno sin consentimiento del otro estudiante.",
+                  "mitigation": "Validar que ambos LockerRental pertenezcan a usuarios distintos. Requerir confirmacion del segundo estudiante via correo + token de aceptacion. Transaccion atomica con doble PESSIMISTIC_WRITE.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "07a4dcb8-4751-44e8-9a6e-fda4a94c48a1",
+                  "number": 11,
+                  "title": "T-11: Repudiacion del intercambio por las partes involucradas",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Tras un intercambio, una de las partes podria negar haber consentido la operacion.",
+                  "mitigation": "Requerir doble consentimiento: el estudiante origen inicia, el destino acepta via token enviado por correo. Persistir ambos consentimientos en DS-05 con timestamps separados. Notificar a ambos por correo tras completar.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "81514543-d927-4961-bca0-da9a13415dd9",
+            "shape": "process",
+            "position": {
+              "x": 1300,
+              "y": 1480
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-08 Registro Efectivo"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-08 Registro Efectivo",
+              "description": "P-08 Registro Efectivo",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "b0821c21-9e7d-4d6e-8451-ba1f5992814f",
+                  "number": 10,
+                  "title": "T-10: Repudiacion por parte del Registrador",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Un Registrador podria negar haber registrado un alquiler en efectivo si la auditoria no captura el actor correcto (jti del JWT, IP, timestamp, hash del request).",
+                  "mitigation": "AUD-01 obligatorio: registrar en DS-05 el sub del JWT, ip, userAgent, timestamp y hash SHA-256 del payload. Firmar el registro con HMAC. Doble verificacion: callback de confirmacion al Administrador supervisor.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Registrador"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "59093a28-172e-480c-80bd-9669a0241da9",
+            "shape": "process",
+            "position": {
+              "x": 1700,
+              "y": 900
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-09 Webhook PayPhone"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-09 Webhook PayPhone",
+              "description": "P-09 Webhook PayPhone",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "77ffe62c-4bf3-4169-bc74-d5905f87e672",
+                  "number": 8,
+                  "title": "T-08: Confirmacion de pago falsificada por isPaid permisivo",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "La funcion isPaid() del codigo actual acepta statusCode==3 OR 'Approved'. Un atacante con conocimiento del clientTransactionId podria forjar la respuesta y validar pagos no realizados.",
+                  "mitigation": "Endurecer isPaid(): requerir simultaneamente status=='Approved' AND statusCode==3 AND amount==expected AND clientTransactionId==stored. Validar firma HMAC del webhook con secret en Key Vault.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "36e7db53-5ad5-4e8a-a0af-cb582709a819",
+                  "number": 12,
+                  "title": "T-12: Repudiacion de la confirmacion del pago",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Sin evidencia criptografica del JSON original de PayPhone, una disputa financiera no puede resolverse con certeza.",
+                  "mitigation": "Persistir el JSON crudo de PayPhone en DS-05 (campo evidence_payload). Almacenar hash SHA-256 + firma del provider si esta disponible. Conservar minimo 7 anos por requisitos contables.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": true,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "440c0235-4cb6-4ab7-afe7-56d83ecf1261",
+            "shape": "process",
+            "position": {
+              "x": 1700,
+              "y": 1480
+            },
+            "size": {
+              "width": 220,
+              "height": 100
             },
             "attrs": {
               "label": {
@@ -484,554 +746,468 @@
               "name": "P-10 Schedulers",
               "description": "P-10 Schedulers",
               "outOfScope": false,
+              "threats": [],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "System"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "3ad50282-950f-414c-90be-682fc2c2421f",
+            "shape": "process",
+            "position": {
+              "x": 1100,
+              "y": 1900
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-11 Gestion Periodos"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-11 Gestion Periodos",
+              "description": "P-11 Gestion Periodos",
+              "outOfScope": false,
+              "threats": [],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Administrator"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "08037032-c696-4a6a-83b0-b17d10caedcf",
+            "shape": "process",
+            "position": {
+              "x": 1400,
+              "y": 1900
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-12 Gestion Bloques"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-12 Gestion Bloques",
+              "description": "P-12 Gestion Bloques",
+              "outOfScope": false,
+              "threats": [],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Administrator"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "395bc0bc-121c-43e5-8e7f-ee9a75962fba",
+            "shape": "process",
+            "position": {
+              "x": 1700,
+              "y": 1900
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-13 Gestion Alquileres"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-13 Gestion Alquileres",
+              "description": "P-13 Gestion Alquileres",
+              "outOfScope": false,
               "threats": [
                 {
-                  "id": "13bce6cf-372e-42fc-8302-7a6bc384511e",
+                  "id": "26fb0e87-f44e-4b52-b34c-67a1895522c8",
                   "number": 22,
-                  "title": "T-22: Carga sostenida en BD por schedulers",
-                  "status": "Open",
-                  "severity": "Low",
-                  "type": "Denial of service",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ],
-              "handlesCardPayment": false,
-              "isWebApplication": true,
-              "privilegeLevel": "User"
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "2eb3a904-4151-4faf-82c3-ad9a37325c04",
-            "shape": "process",
-            "position": {
-              "x": 540,
-              "y": 900
-            },
-            "size": {
-              "width": 180,
-              "height": 90
-            },
-            "attrs": {
-              "label": {
-                "text": "P-06 Gestion Periodos"
-              }
-            },
-            "data": {
-              "type": "tm.Process",
-              "name": "P-06 Gestion Periodos",
-              "description": "P-06 Gestion Periodos",
-              "outOfScope": false,
-              "threats": [],
-              "handlesCardPayment": false,
-              "isWebApplication": true,
-              "privilegeLevel": "Admin"
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "9f3fbeab-d387-4452-8b6a-3898c4f85bd2",
-            "shape": "process",
-            "position": {
-              "x": 800,
-              "y": 900
-            },
-            "size": {
-              "width": 180,
-              "height": 90
-            },
-            "attrs": {
-              "label": {
-                "text": "P-07 Gestion Bloques-Casilleros"
-              }
-            },
-            "data": {
-              "type": "tm.Process",
-              "name": "P-07 Gestion Bloques-Casilleros",
-              "description": "P-07 Gestion Bloques-Casilleros",
-              "outOfScope": false,
-              "threats": [],
-              "handlesCardPayment": false,
-              "isWebApplication": true,
-              "privilegeLevel": "Admin"
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "ab8eb4d0-886e-4892-960f-b4f7f1c3d609",
-            "shape": "process",
-            "position": {
-              "x": 1060,
-              "y": 900
-            },
-            "size": {
-              "width": 180,
-              "height": 90
-            },
-            "attrs": {
-              "label": {
-                "text": "P-08 Gestion Alquileres"
-              }
-            },
-            "data": {
-              "type": "tm.Process",
-              "name": "P-08 Gestion Alquileres",
-              "description": "P-08 Gestion Alquileres",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "97b9899c-be5c-4368-bf7e-f112b448f930",
-                  "number": 16,
-                  "title": "T-16: IDOR en alquiler excepcional",
+                  "title": "T-22: IDOR en alquiler excepcional para suplantar Estudiante",
                   "status": "Open",
                   "severity": "High",
                   "type": "Elevation of privilege",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "description": "El endpoint /admin/api/locker-rentals/exceptional permite al Administrador especificar el username del titular del alquiler. Una validacion deficiente permitiria crear alquileres a nombre de cualquier usuario sin su consentimiento.",
+                  "mitigation": "Validar que el username exista, este enabled, y pertenezca al periodo activo. Notificar al usuario por correo de cualquier alquiler creado a su nombre. Auditar con AUD-01.",
                   "modelType": "STRIDE"
                 }
               ],
               "handlesCardPayment": false,
               "isWebApplication": true,
-              "privilegeLevel": "Admin"
+              "privilegeLevel": "Administrator"
             },
             "zIndex": 10
           },
           {
-            "id": "6f4bb852-ad52-481a-91f7-55e3bd382c6e",
+            "id": "d4b84ff2-67aa-4b8d-bcb0-37648c7ea0ad",
             "shape": "process",
             "position": {
-              "x": 1320,
-              "y": 900
+              "x": 2000,
+              "y": 1900
             },
             "size": {
-              "width": 180,
-              "height": 90
+              "width": 220,
+              "height": 100
             },
             "attrs": {
               "label": {
-                "text": "P-09 Excel Export"
+                "text": "P-14 Exportacion Reportes"
               }
             },
             "data": {
               "type": "tm.Process",
-              "name": "P-09 Excel Export",
-              "description": "P-09 Excel Export",
+              "name": "P-14 Exportacion Reportes",
+              "description": "P-14 Exportacion Reportes",
+              "outOfScope": false,
+              "threats": [],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Administrator"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "4d14028f-643f-4cc6-8573-3e035d1173f9",
+            "shape": "process",
+            "position": {
+              "x": 2100,
+              "y": 1480
+            },
+            "size": {
+              "width": 220,
+              "height": 100
+            },
+            "attrs": {
+              "label": {
+                "text": "P-15 Servicio de Auditoria"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-15 Servicio de Auditoria",
+              "description": "P-15 Servicio de Auditoria",
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "f660d529-d28b-4f49-bbc7-1132f25c53bc",
-                  "number": 17,
-                  "title": "T-17: Exfiltracion via payload arbitrario",
+                  "id": "d47cddf4-d523-4f10-8f07-b30cce148dfb",
+                  "number": 20,
+                  "title": "T-20: DoS de auditoria por saturacion de eventos",
                   "status": "Open",
                   "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                },
-                {
-                  "id": "e5f43a04-42e7-4f6c-86bc-a4b4d6accc7e",
-                  "number": 18,
-                  "title": "T-18: CSV o Formula Injection",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "type": "Denial of service",
+                  "description": "Un atacante podria generar eventos auditables a alta frecuencia para llenar DS-05 y degradar el servicio.",
+                  "mitigation": "Batching de eventos de auditoria. Particionamiento mensual de DS-05. Alertas de crecimiento anomalo. Quota por usuario.",
                   "modelType": "STRIDE"
                 }
               ],
               "handlesCardPayment": false,
               "isWebApplication": true,
-              "privilegeLevel": "Admin"
+              "privilegeLevel": "System"
             },
             "zIndex": 10
           },
           {
-            "id": "075e7442-bdb3-4953-a795-48606320c8f6",
+            "id": "513ce763-3288-4ba3-99a1-509099d88f47",
             "shape": "store",
             "position": {
-              "x": 60,
+              "x": 2100,
               "y": 40
             },
             "size": {
-              "width": 220,
-              "height": 70
+              "width": 260,
+              "height": 80
             },
             "attrs": {
               "label": {
-                "text": "DS-06 Logs"
+                "text": "DS-01 BD Usuarios (AES-256, bcrypt)"
               }
             },
             "data": {
               "type": "tm.Store",
-              "name": "DS-06 Logs",
-              "description": "DS-06 Logs",
+              "name": "DS-01 BD Usuarios (AES-256, bcrypt)",
+              "description": "DS-01 BD Usuarios (AES-256, bcrypt)",
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "88042ac1-d90c-4730-9752-8e716ad14450",
-                  "number": 24,
-                  "title": "T-24: Trazabilidad reconstruible via logs",
-                  "status": "Open",
-                  "severity": "Low",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ],
-              "isALog": true,
-              "isEncrypted": false,
-              "storesCredentials": false
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "0a05f7b3-8535-4dee-bf98-6d8dab5a0dca",
-            "shape": "store",
-            "position": {
-              "x": 920,
-              "y": 40
-            },
-            "size": {
-              "width": 220,
-              "height": 70
-            },
-            "attrs": {
-              "label": {
-                "text": "DS-01 BD app_user"
-              }
-            },
-            "data": {
-              "type": "tm.Store",
-              "name": "DS-01 BD app_user",
-              "description": "DS-01 BD app_user",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "99596afe-23e0-4753-bae3-12dcd83242e6",
-                  "number": 14,
-                  "title": "T-14: SQLi via filtros administrativos",
+                  "id": "d5848cda-44a9-40cb-9355-946176451ab7",
+                  "number": 6,
+                  "title": "T-06: Tampering de la base de datos por compromiso de credenciales DBA",
                   "status": "Open",
                   "severity": "Medium",
                   "type": "Tampering",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                },
-                {
-                  "id": "26de1adb-9016-4149-835a-8538188a440f",
-                  "number": 15,
-                  "title": "T-15: Exposicion de esquema y queries por show-sql y ddl-auto",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ],
-              "isALog": false,
-              "isEncrypted": false,
-              "storesCredentials": true
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "2b53edcb-9755-4c9e-b9f9-9c642ee3db35",
-            "shape": "store",
-            "position": {
-              "x": 1200,
-              "y": 40
-            },
-            "size": {
-              "width": 220,
-              "height": 70
-            },
-            "attrs": {
-              "label": {
-                "text": "DS-02 BD verification_token"
-              }
-            },
-            "data": {
-              "type": "tm.Store",
-              "name": "DS-02 BD verification_token",
-              "description": "DS-02 BD verification_token",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "37587c21-6cff-41d2-b5f1-7f3bcfc06d07",
-                  "number": 3,
-                  "title": "T-03: Reutilizacion de token de verificacion",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ],
-              "isALog": false,
-              "isEncrypted": false,
-              "storesCredentials": false
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "d2f4d0ca-99cf-42e2-b899-3e46b05bf720",
-            "shape": "store",
-            "position": {
-              "x": 1480,
-              "y": 40
-            },
-            "size": {
-              "width": 220,
-              "height": 70
-            },
-            "attrs": {
-              "label": {
-                "text": "DS-03 BD Lockers-Periods"
-              }
-            },
-            "data": {
-              "type": "tm.Store",
-              "name": "DS-03 BD Lockers-Periods",
-              "description": "DS-03 BD Lockers-Periods",
-              "outOfScope": false,
-              "threats": [],
-              "isALog": false,
-              "isEncrypted": false,
-              "storesCredentials": false
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "837dbb8a-e0a5-4928-bc93-0ce0c7f434b3",
-            "shape": "store",
-            "position": {
-              "x": 1760,
-              "y": 40
-            },
-            "size": {
-              "width": 220,
-              "height": 70
-            },
-            "attrs": {
-              "label": {
-                "text": "DS-04 BD Rentals"
-              }
-            },
-            "data": {
-              "type": "tm.Store",
-              "name": "DS-04 BD Rentals",
-              "description": "DS-04 BD Rentals",
-              "outOfScope": false,
-              "threats": [],
-              "isALog": false,
-              "isEncrypted": false,
-              "storesCredentials": false
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "32ebeffc-ef54-41cf-a631-2864d384ff9d",
-            "shape": "store",
-            "position": {
-              "x": 60,
-              "y": 700
-            },
-            "size": {
-              "width": 220,
-              "height": 70
-            },
-            "attrs": {
-              "label": {
-                "text": "DS-05 Secretos"
-              }
-            },
-            "data": {
-              "type": "tm.Store",
-              "name": "DS-05 Secretos",
-              "description": "DS-05 Secretos",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "084c7e75-564b-41a4-8a1d-866bd2ab1c0f",
-                  "number": 23,
-                  "title": "T-23: Secretos reales en archivo .env del workspace",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "description": "Si las credenciales DBA almacenadas en Key Vault son comprometidas, un atacante con acceso a la red podria modificar registros (cambiar roles, montos, etc.) directamente en la BD. El cifrado AES-256 en reposo (CRY-02) no protege contra accesos legitimos a la BD.",
+                  "mitigation": "Restringir red privada (VNet) hacia Azure SQL. Auditar logs de queries con Azure SQL Auditing. Implementar triggers de auditoria a nivel BD. Rotacion frecuente de credenciales DBA.",
                   "modelType": "STRIDE"
                 }
               ],
               "isALog": false,
               "isEncrypted": true,
-              "storesCredentials": true
+              "storesCredentials": true,
+              "storesInventory": false
             },
             "zIndex": 10
           },
           {
-            "id": "895f7383-ba9e-4b28-a464-4b91b780b11c",
-            "shape": "trust-boundary-box",
+            "id": "fae00438-2855-4df4-b948-56c7bc0a7dd4",
+            "shape": "store",
             "position": {
-              "x": 420,
-              "y": 20
+              "x": 2380,
+              "y": 40
             },
             "size": {
-              "width": 8,
-              "height": 1320
+              "width": 260,
+              "height": 80
             },
             "attrs": {
               "label": {
-                "text": "TB-01 Internet vs Capa Web"
+                "text": "DS-02 BD Tokens de Verificacion"
               }
             },
             "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-01 Internet vs Capa Web",
-              "description": "Frontera de confianza identificada en la Parte 3.",
+              "type": "tm.Store",
+              "name": "DS-02 BD Tokens de Verificacion",
+              "description": "DS-02 BD Tokens de Verificacion",
+              "outOfScope": false,
+              "threats": [],
+              "isALog": false,
+              "isEncrypted": false,
+              "storesCredentials": false,
+              "storesInventory": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "cc28859f-f638-4393-bfba-287c4c1184a2",
+            "shape": "store",
+            "position": {
+              "x": 2100,
+              "y": 160
+            },
+            "size": {
+              "width": 260,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-03 BD Casilleros y Periodos"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-03 BD Casilleros y Periodos",
+              "description": "DS-03 BD Casilleros y Periodos",
+              "outOfScope": false,
+              "threats": [],
+              "isALog": false,
+              "isEncrypted": false,
+              "storesCredentials": false,
+              "storesInventory": true
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "9157a1f2-b976-4113-b36e-66a13d9d2bf9",
+            "shape": "store",
+            "position": {
+              "x": 2380,
+              "y": 160
+            },
+            "size": {
+              "width": 260,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-04 BD Alquileres e Intercambios"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-04 BD Alquileres e Intercambios",
+              "description": "DS-04 BD Alquileres e Intercambios",
+              "outOfScope": false,
+              "threats": [],
+              "isALog": false,
+              "isEncrypted": false,
+              "storesCredentials": false,
+              "storesInventory": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "32218c59-68c7-41b9-b0c8-fd9fd64e35dc",
+            "shape": "store",
+            "position": {
+              "x": 2380,
+              "y": 1620
+            },
+            "size": {
+              "width": 260,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-05 BD Auditoria Inmutable (AES-256)"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-05 BD Auditoria Inmutable (AES-256)",
+              "description": "DS-05 BD Auditoria Inmutable (AES-256)",
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "708ea202-01ef-40e4-8fe7-228f86267f11",
-                  "number": 20,
-                  "title": "T-20: CSRF y SameSite no verificados",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ]
-            },
-            "zIndex": 0
-          },
-          {
-            "id": "6f5607ab-ddb0-42c6-9d21-87d9a2186f3c",
-            "shape": "trust-boundary-box",
-            "position": {
-              "x": 500,
-              "y": 200
-            },
-            "size": {
-              "width": 920,
-              "height": 540
-            },
-            "attrs": {
-              "label": {
-                "text": "TB-02 Capa Web vs Servicios"
-              }
-            },
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-02 Capa Web vs Servicios",
-              "description": "Frontera de confianza identificada en la Parte 3.",
-              "outOfScope": false,
-              "threats": []
-            },
-            "zIndex": 0
-          },
-          {
-            "id": "9ce1157c-db4d-48b7-8d93-39553842610a",
-            "shape": "trust-boundary-box",
-            "position": {
-              "x": 500,
-              "y": 880
-            },
-            "size": {
-              "width": 1000,
-              "height": 140
-            },
-            "attrs": {
-              "label": {
-                "text": "TB-03 Zona Usuario vs Admin"
-              }
-            },
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-03 Zona Usuario vs Admin",
-              "description": "Frontera de confianza identificada en la Parte 3.",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "aaa9508a-f7f2-4744-a92a-bb4536fbb7cf",
-                  "number": 19,
-                  "title": "T-19: Privilegios todo o nada por falta del rol Registrador",
+                  "id": "70521062-1c42-48a7-9f81-b950cf18f26f",
+                  "number": 9,
+                  "title": "T-09: Alteracion del registro de auditoria por administrador malicioso",
                   "status": "Open",
                   "severity": "High",
-                  "type": "Elevation of privilege",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "type": "Tampering",
+                  "description": "Si la BD de auditoria no es realmente append-only, un Administrador con acceso podria borrar evidencia de operaciones fraudulentas (ej. registro efectivo no efectivo).",
+                  "mitigation": "Implementar tabla append-only a nivel BD (Azure SQL Ledger Tables). Replicar logs a un Storage Account WORM (write-once read-many). Firmar cada registro con HMAC encadenado (blockchain-style).",
                   "modelType": "STRIDE"
                 }
-              ]
+              ],
+              "isALog": true,
+              "isEncrypted": true,
+              "storesCredentials": false,
+              "storesInventory": false
             },
-            "zIndex": 0
+            "zIndex": 10
           },
           {
-            "id": "d9b69d62-a2ac-4764-8f38-655ef17ff147",
+            "id": "59d0a9d6-6d66-43f1-892a-985bf4a39f65",
+            "shape": "store",
+            "position": {
+              "x": 80,
+              "y": 1700
+            },
+            "size": {
+              "width": 260,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-06 Logs Operacionales"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-06 Logs Operacionales",
+              "description": "DS-06 Logs Operacionales",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "49af0cca-a7ac-4565-939a-e817fe7964ea",
+                  "number": 15,
+                  "title": "T-15: Exposicion de informacion sensible en logs",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Logs operacionales podrian contener fragmentos de JWT, cedulas o correos si no se sanean antes de escribir.",
+                  "mitigation": "Filtros de Logback con mask de patrones (regex de cedula 10 digitos, correos, headers Authorization). Revisar logs en staging con SonarQube reglas custom. Logs estructurados JSON con whitelisting de campos.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "isALog": true,
+              "isEncrypted": false,
+              "storesCredentials": false,
+              "storesInventory": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "6f1ebd9f-19d1-4719-8f81-d7b2cdd9ecab",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 890,
+              "x": 440,
               "y": 20
             },
             "size": {
-              "width": 1110,
-              "height": 130
+              "width": 8,
+              "height": 2300
             },
             "attrs": {
               "label": {
-                "text": "TB-04 App vs Base de Datos"
+                "text": "TB-01 Internet vs WAF"
               }
             },
             "data": {
               "type": "tm.BoundaryBox",
-              "name": "TB-04 App vs Base de Datos",
-              "description": "Frontera de confianza identificada en la Parte 3.",
+              "name": "TB-01 Internet vs WAF",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
               "outOfScope": false,
               "threats": []
             },
             "zIndex": 0
           },
           {
-            "id": "5b0be51d-f29b-4201-96e4-eb3c1e7810d9",
+            "id": "5d88d913-059c-44a6-b07e-57bb97ec6d30",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 1860,
-              "y": 380
+              "x": 820,
+              "y": 20
             },
             "size": {
               "width": 8,
-              "height": 220
+              "height": 1700
             },
             "attrs": {
               "label": {
-                "text": "TB-05 App vs PayPhone"
+                "text": "TB-02 WAF vs Capa Web"
               }
             },
             "data": {
               "type": "tm.BoundaryBox",
-              "name": "TB-05 App vs PayPhone",
-              "description": "Frontera de confianza identificada en la Parte 3.",
+              "name": "TB-02 WAF vs Capa Web",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
               "outOfScope": false,
               "threats": []
             },
             "zIndex": 0
           },
           {
-            "id": "3cc79ad2-ab3d-4e13-9a71-35f6872645bf",
+            "id": "a34c6db8-8b7d-4901-91d7-bbf69f64c422",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 1860,
-              "y": 160
+              "x": 870,
+              "y": 240
+            },
+            "size": {
+              "width": 1080,
+              "height": 1100
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-03 Zona Autenticada (JWT)"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-03 Zona Autenticada (JWT)",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "6dbbd7dc-4ec6-4389-aaf7-b3d5be85d023",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 1240,
+              "y": 1440
             },
             "size": {
               "width": 300,
@@ -1039,51 +1215,176 @@
             },
             "attrs": {
               "label": {
-                "text": "TB-06 App vs SMTP"
+                "text": "TB-04 Zona Registrador"
               }
             },
             "data": {
               "type": "tm.BoundaryBox",
-              "name": "TB-06 App vs SMTP",
-              "description": "Frontera de confianza identificada en la Parte 3.",
+              "name": "TB-04 Zona Registrador",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
               "outOfScope": false,
               "threats": []
             },
             "zIndex": 0
           },
           {
-            "id": "712aada7-5bb3-41c1-93fc-d165c571cb18",
+            "id": "49734873-4dd7-4042-9df8-484c51be4cb2",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 40,
-              "y": 680
+              "x": 1060,
+              "y": 1860
             },
             "size": {
-              "width": 280,
-              "height": 120
+              "width": 1200,
+              "height": 160
             },
             "attrs": {
               "label": {
-                "text": "TB-07 App vs Almacen Secretos"
+                "text": "TB-05 Zona Administrador"
               }
             },
             "data": {
               "type": "tm.BoundaryBox",
-              "name": "TB-07 App vs Almacen Secretos",
-              "description": "Frontera de confianza identificada en la Parte 3.",
+              "name": "TB-05 Zona Administrador",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
               "outOfScope": false,
               "threats": []
             },
             "zIndex": 0
           },
           {
-            "id": "7de33a9b-ebf5-43a9-981a-c3875779d4f2",
+            "id": "5a5083fe-b15e-4353-bb2b-e7e10e646f65",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 2080,
+              "y": 20
+            },
+            "size": {
+              "width": 580,
+              "height": 220
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-06 Aplicacion vs Base de Datos"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-06 Aplicacion vs Base de Datos",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "fb3bb566-bd36-4eee-9650-b64793f61de5",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 2620,
+              "y": 580
+            },
+            "size": {
+              "width": 8,
+              "height": 220
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-07 Aplicacion vs PayPhone"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-07 Aplicacion vs PayPhone",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "cdf6858c-f374-442d-a13d-b92bb2b3d3ef",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 2620,
+              "y": 260
+            },
+            "size": {
+              "width": 8,
+              "height": 140
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-08 Aplicacion vs SMTP"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-08 Aplicacion vs SMTP",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "6587d425-ca75-44ed-9ae9-18eb68652574",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 2620,
+              "y": 880
+            },
+            "size": {
+              "width": 8,
+              "height": 180
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-09 Aplicacion vs Key Vault"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-09 Aplicacion vs Key Vault",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "dc69336d-ea27-4c82-9224-81b1af36e169",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 2080,
+              "y": 1440
+            },
+            "size": {
+              "width": 580,
+              "height": 280
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-10 Auditoria Inmutable"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-10 Auditoria Inmutable",
+              "description": "Frontera de confianza del sistema AEIS planificado.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "8e3c9cd7-799c-463d-a415-9191272bb381",
             "shape": "flow",
             "source": {
-              "cell": "9a52dd35-40d0-4680-b6ef-98d3a63fc79f"
+              "cell": "c112a958-baae-4994-8f27-b9febeb71ccf"
             },
             "target": {
-              "cell": "23955c65-ab85-4b2c-a76d-a206be30b4d8"
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
             },
             "labels": [
               {
@@ -1097,7 +1398,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-01",
-              "description": "Datos de registro: cedula, correo, password, codigo unico, facultad (ALTA)",
+              "description": "HTTPS publico de registro con datos personales del estudiante (cedula, correo, password, codigo unico, facultad).",
               "outOfScope": false,
               "isEncrypted": true,
               "isPublicNetwork": true,
@@ -1107,13 +1408,13 @@
             "zIndex": 5
           },
           {
-            "id": "82209eca-4bdc-492b-8f1e-90fb0d511991",
+            "id": "a7f21601-2ce2-497a-9865-35c9a92a03f3",
             "shape": "flow",
             "source": {
-              "cell": "23955c65-ab85-4b2c-a76d-a206be30b4d8"
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
             },
             "target": {
-              "cell": "0a05f7b3-8535-4dee-bf98-6d8dab5a0dca"
+              "cell": "d352224b-2be1-40af-9e43-3f607dbf0902"
             },
             "labels": [
               {
@@ -1127,7 +1428,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-02",
-              "description": "Persistir user + hash BCrypt (ALTA)",
+              "description": "Trafico de registro filtrado por el WAF (post-inspeccion contra reglas OWASP CRS).",
               "outOfScope": false,
               "isEncrypted": true,
               "isPublicNetwork": true,
@@ -1137,13 +1438,13 @@
             "zIndex": 5
           },
           {
-            "id": "49abba91-0f3a-4e6d-b9a4-2e893f8495d2",
+            "id": "d0551fa0-6acf-413e-a514-107c0ee72995",
             "shape": "flow",
             "source": {
-              "cell": "23955c65-ab85-4b2c-a76d-a206be30b4d8"
+              "cell": "d352224b-2be1-40af-9e43-3f607dbf0902"
             },
             "target": {
-              "cell": "f183b58a-696a-4561-af5b-316d648530de"
+              "cell": "513ce763-3288-4ba3-99a1-509099d88f47"
             },
             "labels": [
               {
@@ -1157,23 +1458,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-03",
-              "description": "Enviar correo SMTP con enlace y token UUID (MEDIA-ALTA)",
+              "description": "Persistencia del usuario con hash bcrypt y cifrado en reposo AES-256.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "be03a00b-18f4-408a-be31-0262948b88a6",
+            "id": "3a4dfc3f-f8d5-49c6-b63d-3750a6e7f809",
             "shape": "flow",
             "source": {
-              "cell": "f183b58a-696a-4561-af5b-316d648530de"
+              "cell": "d352224b-2be1-40af-9e43-3f607dbf0902"
             },
             "target": {
-              "cell": "9a52dd35-40d0-4680-b6ef-98d3a63fc79f"
+              "cell": "fae00438-2855-4df4-b948-56c7bc0a7dd4"
             },
             "labels": [
               {
@@ -1187,23 +1488,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-04",
-              "description": "Correo de verificacion entregado al estudiante (MEDIA-ALTA)",
+              "description": "Persistencia del hash SHA-256 del token UUID de verificacion.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "d00a7a3b-e4c9-4cbe-a3a1-498e5876d1d3",
+            "id": "22859bdb-44a5-4c2f-9263-2c6763b2a817",
             "shape": "flow",
             "source": {
-              "cell": "9a52dd35-40d0-4680-b6ef-98d3a63fc79f"
+              "cell": "d352224b-2be1-40af-9e43-3f607dbf0902"
             },
             "target": {
-              "cell": "e8be6586-a8ab-4cde-9b6e-e1be13212a4b"
+              "cell": "4409647c-bcca-4aa6-9dbd-31a9c69a2f46"
             },
             "labels": [
               {
@@ -1217,23 +1518,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-05",
-              "description": "Credenciales username y password sobre HTTPS (ALTA)",
+              "description": "Envio del correo de verificacion via SMTP TLS 1.2+ con enlace que contiene el token.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "1fe0b0ca-9165-4342-88bd-013e73dd21ee",
+            "id": "9d5aaca4-1bdf-40a8-b9c9-6df45807af72",
             "shape": "flow",
             "source": {
-              "cell": "e8be6586-a8ab-4cde-9b6e-e1be13212a4b"
+              "cell": "4409647c-bcca-4aa6-9dbd-31a9c69a2f46"
             },
             "target": {
-              "cell": "0a05f7b3-8535-4dee-bf98-6d8dab5a0dca"
+              "cell": "c112a958-baae-4994-8f27-b9febeb71ccf"
             },
             "labels": [
               {
@@ -1247,23 +1548,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-06",
-              "description": "Lectura del hash BCrypt (ALTA)",
+              "description": "Correo de verificacion entregado al buzon del estudiante.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "2ce38510-2f44-42f4-aa54-8fffa768200c",
+            "id": "971612df-cfef-4b4e-9798-54d88704fcbb",
             "shape": "flow",
             "source": {
-              "cell": "9a52dd35-40d0-4680-b6ef-98d3a63fc79f"
+              "cell": "c112a958-baae-4994-8f27-b9febeb71ccf"
             },
             "target": {
-              "cell": "af5a6199-282c-4e6a-b831-684c6539238d"
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
             },
             "labels": [
               {
@@ -1277,9 +1578,9 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-07",
-              "description": "Consulta de bloques y casilleros (BAJA)",
+              "description": "Solicitud de login HTTPS con credenciales username/password.",
               "outOfScope": false,
-              "isEncrypted": false,
+              "isEncrypted": true,
               "isPublicNetwork": true,
               "protocol": "HTTPS",
               "threats": []
@@ -1287,13 +1588,13 @@
             "zIndex": 5
           },
           {
-            "id": "cd35f522-d760-4a89-b1f7-a81b9fb0b74f",
+            "id": "cfd014bd-ac83-42b8-819b-30cb436be2b5",
             "shape": "flow",
             "source": {
-              "cell": "af5a6199-282c-4e6a-b831-684c6539238d"
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
             },
             "target": {
-              "cell": "d2f4d0ca-99cf-42e2-b899-3e46b05bf720"
+              "cell": "c0c9ca87-3ea6-4ddd-86c4-d93fb7018a64"
             },
             "labels": [
               {
@@ -1307,9 +1608,9 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-08",
-              "description": "Lectura del catalogo (BAJA)",
+              "description": "Trafico de login filtrado por el WAF (rate-limit + bloqueo de credential stuffing).",
               "outOfScope": false,
-              "isEncrypted": false,
+              "isEncrypted": true,
               "isPublicNetwork": true,
               "protocol": "HTTPS",
               "threats": []
@@ -1317,13 +1618,13 @@
             "zIndex": 5
           },
           {
-            "id": "a41b0bb8-9e9d-440f-8cd5-c818d760fcd0",
+            "id": "e97c7e70-b6d8-4ec4-83ed-de61aaba166f",
             "shape": "flow",
             "source": {
-              "cell": "9a52dd35-40d0-4680-b6ef-98d3a63fc79f"
+              "cell": "c0c9ca87-3ea6-4ddd-86c4-d93fb7018a64"
             },
             "target": {
-              "cell": "0fc6de83-29b6-426e-b3e8-0898ad2d0359"
+              "cell": "513ce763-3288-4ba3-99a1-509099d88f47"
             },
             "labels": [
               {
@@ -1337,23 +1638,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-09",
-              "description": "POST de alquiler con startDate y endDate (MEDIA)",
+              "description": "Lectura del hash bcrypt para validar credenciales.",
               "outOfScope": false,
-              "isEncrypted": false,
-              "isPublicNetwork": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "4a15a683-bd0c-48b8-875f-a0bc9a30a53f",
+            "id": "05cf8c7b-424e-4ad3-9811-ee6715c0f5d8",
             "shape": "flow",
             "source": {
-              "cell": "0fc6de83-29b6-426e-b3e8-0898ad2d0359"
+              "cell": "c0c9ca87-3ea6-4ddd-86c4-d93fb7018a64"
             },
             "target": {
-              "cell": "837dbb8a-e0a5-4928-bc93-0ce0c7f434b3"
+              "cell": "73306469-719a-4200-9c2a-4a75c1667946"
             },
             "labels": [
               {
@@ -1367,23 +1668,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-10",
-              "description": "Creacion de PreRental + PESSIMISTIC_WRITE (ALTA)",
+              "description": "Obtencion de la clave privada RS256 desde Azure Key Vault para firmar el JWT.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "fe7fb408-48cb-4267-b2bf-68de521ca5ad",
+            "id": "90a39bed-ae49-4d6f-9c4a-228496e935b2",
             "shape": "flow",
             "source": {
-              "cell": "0fc6de83-29b6-426e-b3e8-0898ad2d0359"
+              "cell": "c0c9ca87-3ea6-4ddd-86c4-d93fb7018a64"
             },
             "target": {
-              "cell": "9a52dd35-40d0-4680-b6ef-98d3a63fc79f"
+              "cell": "c112a958-baae-4994-8f27-b9febeb71ccf"
             },
             "labels": [
               {
@@ -1397,23 +1698,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-11",
-              "description": "Vista checkout con token, storeId, clientTxId y amount (ALTA)",
+              "description": "Entrega del JWT firmado (httpOnly + Secure + SameSite=Strict) con expiracion corta.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "bdf2b570-666e-4b6c-845f-32699442ac77",
+            "id": "36cdb30c-d31a-4807-9749-a098ea8d511c",
             "shape": "flow",
             "source": {
-              "cell": "9a52dd35-40d0-4680-b6ef-98d3a63fc79f"
+              "cell": "c112a958-baae-4994-8f27-b9febeb71ccf"
             },
             "target": {
-              "cell": "2d08449d-44f1-4247-bd0b-0090f3976963"
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
             },
             "labels": [
               {
@@ -1427,9 +1728,9 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-12",
-              "description": "Pago directo del estudiante a PayPhone (FUERA DE ALCANCE)",
-              "outOfScope": true,
-              "isEncrypted": false,
+              "description": "Peticiones autenticadas con JWT (incluidas en cookie httpOnly).",
+              "outOfScope": false,
+              "isEncrypted": true,
               "isPublicNetwork": true,
               "protocol": "HTTPS",
               "threats": []
@@ -1437,13 +1738,13 @@
             "zIndex": 5
           },
           {
-            "id": "494b593a-d242-4eb1-93b4-9d3f025065b5",
+            "id": "ae0ea8f7-1682-4e2a-bae2-5b008bef519d",
             "shape": "flow",
             "source": {
-              "cell": "2d08449d-44f1-4247-bd0b-0090f3976963"
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
             },
             "target": {
-              "cell": "0f074904-b3bb-4fb7-bfd0-8077ed98ccd2"
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
             },
             "labels": [
               {
@@ -1457,7 +1758,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-13",
-              "description": "Redireccion al webhook con id y clientTransactionId (ALTA)",
+              "description": "Validacion del JWT y resolucion de roles RBAC (Estudiante, Registrador, Administrador).",
               "outOfScope": false,
               "isEncrypted": true,
               "isPublicNetwork": true,
@@ -1467,13 +1768,13 @@
             "zIndex": 5
           },
           {
-            "id": "571d7bf3-b7fa-49d9-9f73-278938f7695b",
+            "id": "dc41bd50-a565-428a-bf75-9a021a856e95",
             "shape": "flow",
             "source": {
-              "cell": "0f074904-b3bb-4fb7-bfd0-8077ed98ccd2"
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
             },
             "target": {
-              "cell": "2d08449d-44f1-4247-bd0b-0090f3976963"
+              "cell": "73306469-719a-4200-9c2a-4a75c1667946"
             },
             "labels": [
               {
@@ -1487,23 +1788,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-14",
-              "description": "POST de confirmacion con Bearer token a PayPhone (ALTA)",
+              "description": "Obtencion de la clave publica RS256 para verificar firma del JWT.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "0e5926b1-bb62-4945-9d87-7c885577610a",
+            "id": "dd9fe641-ed40-461c-b77d-b27bbac3c1ce",
             "shape": "flow",
             "source": {
-              "cell": "0f074904-b3bb-4fb7-bfd0-8077ed98ccd2"
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
             },
             "target": {
-              "cell": "837dbb8a-e0a5-4928-bc93-0ce0c7f434b3"
+              "cell": "f51da849-6c57-45e8-abdc-f712479ca6e3"
             },
             "labels": [
               {
@@ -1517,23 +1818,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-15",
-              "description": "Persistencia del resultado del pago (ALTA)",
+              "description": "Despacho a vista de casilleros si rol == Estudiante.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "b7cb9d67-35a5-4f4b-a8fe-c253fa072819",
+            "id": "bdbe4e12-b360-40a6-98f7-12008165e286",
             "shape": "flow",
             "source": {
-              "cell": "d14c7435-bfbc-48cb-9c3a-4819128965f9"
+              "cell": "f51da849-6c57-45e8-abdc-f712479ca6e3"
             },
             "target": {
-              "cell": "ab8eb4d0-886e-4892-960f-b4f7f1c3d609"
+              "cell": "cc28859f-f638-4393-bfba-287c4c1184a2"
             },
             "labels": [
               {
@@ -1547,23 +1848,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-16",
-              "description": "Operaciones administrativas con rol ADMIN (ALTA)",
+              "description": "Lectura del catalogo de bloques y casilleros del periodo activo.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "bd3d5e0d-ee6f-441f-a1ab-fcef0b148d65",
+            "id": "7ab9b824-300d-4977-b029-ba0d29cc3a63",
             "shape": "flow",
             "source": {
-              "cell": "6f4bb852-ad52-481a-91f7-55e3bd382c6e"
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
             },
             "target": {
-              "cell": "d14c7435-bfbc-48cb-9c3a-4819128965f9"
+              "cell": "0ead80d0-9539-4251-b546-1fd3770a9844"
             },
             "labels": [
               {
@@ -1577,23 +1878,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-17",
-              "description": "Descarga del XLSX con datos de alquileres (MEDIA-ALTA)",
+              "description": "Despacho al proceso de pre-alquiler si rol == Estudiante.",
               "outOfScope": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "4b7db0ca-4ec1-4f93-8265-0e3f4ac916cc",
+            "id": "78ff450e-ca0b-4c76-b1de-d4e83816c4a1",
             "shape": "flow",
             "source": {
-              "cell": "9af9ddd7-69a6-46d3-a532-bedd092dd301"
+              "cell": "0ead80d0-9539-4251-b546-1fd3770a9844"
             },
             "target": {
-              "cell": "837dbb8a-e0a5-4928-bc93-0ce0c7f434b3"
+              "cell": "9157a1f2-b976-4113-b36e-66a13d9d2bf9"
             },
             "labels": [
               {
@@ -1607,23 +1908,23 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-18",
-              "description": "Limpieza de pre-alquileres y cierre de vencidos (MEDIA)",
+              "description": "Creacion del PreRental con bloqueo PESSIMISTIC_WRITE sobre el Locker (expiracion 10 min).",
               "outOfScope": false,
-              "isEncrypted": false,
-              "isPublicNetwork": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
             "zIndex": 5
           },
           {
-            "id": "522dc111-09c4-4dd7-9d23-c07df3dba110",
+            "id": "f6f3eb4d-eeee-4250-ab7c-0adef4e4595c",
             "shape": "flow",
             "source": {
-              "cell": "23955c65-ab85-4b2c-a76d-a206be30b4d8"
+              "cell": "0ead80d0-9539-4251-b546-1fd3770a9844"
             },
             "target": {
-              "cell": "32ebeffc-ef54-41cf-a631-2864d384ff9d"
+              "cell": "3d84a903-926a-4cb4-ba92-c2269c04b4f1"
             },
             "labels": [
               {
@@ -1637,7 +1938,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-19",
-              "description": "Lectura de secretos al arranque (ALTA)",
+              "description": "Inicio de la transaccion con PayPhone (entrega de token publico, storeId, clientTxId, monto).",
               "outOfScope": false,
               "isEncrypted": true,
               "isPublicNetwork": true,
@@ -1647,13 +1948,13 @@
             "zIndex": 5
           },
           {
-            "id": "55a64656-b82c-4648-8ab1-ab2c4e957866",
+            "id": "21157ee5-28d8-46d4-b86a-bb080380457e",
             "shape": "flow",
             "source": {
-              "cell": "6852caaa-a077-450d-b2f7-ff9a5ed6efb2"
+              "cell": "3d84a903-926a-4cb4-ba92-c2269c04b4f1"
             },
             "target": {
-              "cell": "e8be6586-a8ab-4cde-9b6e-e1be13212a4b"
+              "cell": "c112a958-baae-4994-8f27-b9febeb71ccf"
             },
             "labels": [
               {
@@ -1667,10 +1968,910 @@
             "data": {
               "type": "tm.Flow",
               "name": "F-20",
-              "description": "Trafico hostil hacia los puntos de entrada publicos",
-              "outOfScope": false,
-              "isEncrypted": false,
+              "description": "PayPhone devuelve al estudiante con el resultado del pago (fuera del alcance del sistema).",
+              "outOfScope": true,
+              "isEncrypted": true,
               "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "91c2c460-53c6-4f83-a2fd-84095e691e2c",
+            "shape": "flow",
+            "source": {
+              "cell": "3d84a903-926a-4cb4-ba92-c2269c04b4f1"
+            },
+            "target": {
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-21"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-21",
+              "description": "Webhook entrante de PayPhone con id y clientTransactionId.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "06b13fc8-2ecf-4052-bc61-f5eb12b8a3ae",
+            "shape": "flow",
+            "source": {
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
+            },
+            "target": {
+              "cell": "59093a28-172e-480c-80bd-9669a0241da9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-22"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-22",
+              "description": "Trafico del webhook filtrado por el WAF (validacion de IP de origen + HMAC).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "eceb2898-e742-4ce8-99da-46b5dbf38847",
+            "shape": "flow",
+            "source": {
+              "cell": "59093a28-172e-480c-80bd-9669a0241da9"
+            },
+            "target": {
+              "cell": "3d84a903-926a-4cb4-ba92-c2269c04b4f1"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-23"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-23",
+              "description": "Confirmacion saliente al endpoint Confirm de PayPhone con Bearer token.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "cc9afe1c-9704-4293-b15d-2a34d64b3e60",
+            "shape": "flow",
+            "source": {
+              "cell": "59093a28-172e-480c-80bd-9669a0241da9"
+            },
+            "target": {
+              "cell": "9157a1f2-b976-4113-b36e-66a13d9d2bf9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-24"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-24",
+              "description": "Persistencia del resultado del pago: status del PreRental y creacion del LockerRental.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "c8463df6-e55b-4752-8f54-a75ce87d748d",
+            "shape": "flow",
+            "source": {
+              "cell": "59093a28-172e-480c-80bd-9669a0241da9"
+            },
+            "target": {
+              "cell": "4d14028f-643f-4cc6-8573-3e035d1173f9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-25"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-25",
+              "description": "Notificacion del evento de pago para auditoria inmutable (AUD-01).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "e5ad5fba-1f63-4e90-b4df-ff2b1f2529bb",
+            "shape": "flow",
+            "source": {
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
+            },
+            "target": {
+              "cell": "5f601765-3718-4147-b95c-5ec98e4b24aa"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-26"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-26",
+              "description": "Despacho al proceso de intercambio si rol == Estudiante (origen y destino).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "e0de3d4d-e6ae-4924-a60f-42804cbc932c",
+            "shape": "flow",
+            "source": {
+              "cell": "5f601765-3718-4147-b95c-5ec98e4b24aa"
+            },
+            "target": {
+              "cell": "9157a1f2-b976-4113-b36e-66a13d9d2bf9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-27"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-27",
+              "description": "Actualizacion atomica de los dos LockerRental (previousLockerRental/nextLockerRental, status=EXCHANGED).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "594374e9-dd20-4d50-bf37-d0e3f88dcabc",
+            "shape": "flow",
+            "source": {
+              "cell": "5f601765-3718-4147-b95c-5ec98e4b24aa"
+            },
+            "target": {
+              "cell": "4d14028f-643f-4cc6-8573-3e035d1173f9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-28"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-28",
+              "description": "Notificacion del evento de intercambio para auditoria inmutable (AUD-01).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "a7df3beb-8bb5-4373-8bd4-39d528375032",
+            "shape": "flow",
+            "source": {
+              "cell": "c760978f-0dd6-49fb-8509-ab580f633ac2"
+            },
+            "target": {
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-29"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-29",
+              "description": "Login y operaciones del rol Registrador (HTTPS + JWT).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "d5bb4930-4244-4d1a-9f8d-89277eba9d76",
+            "shape": "flow",
+            "source": {
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
+            },
+            "target": {
+              "cell": "81514543-d927-4961-bca0-da9a13415dd9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-30"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-30",
+              "description": "Despacho al proceso de registro efectivo si rol == Registrador.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "d37315d1-431b-4f82-97ea-e3a8d414c235",
+            "shape": "flow",
+            "source": {
+              "cell": "81514543-d927-4961-bca0-da9a13415dd9"
+            },
+            "target": {
+              "cell": "9157a1f2-b976-4113-b36e-66a13d9d2bf9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-31"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-31",
+              "description": "Creacion de LockerRental status=ACTIVE pagado en efectivo (sin pasar por PayPhone).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "cccbe501-e25f-4102-babf-4f0ce3e78084",
+            "shape": "flow",
+            "source": {
+              "cell": "81514543-d927-4961-bca0-da9a13415dd9"
+            },
+            "target": {
+              "cell": "4d14028f-643f-4cc6-8573-3e035d1173f9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-32"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-32",
+              "description": "Notificacion del evento de registro en efectivo para auditoria inmutable (AUD-01).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "88349cfd-bd15-4201-a447-c04f6cf8229e",
+            "shape": "flow",
+            "source": {
+              "cell": "5d7d6c84-dff6-475a-b288-d7d6bb132963"
+            },
+            "target": {
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-33"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-33",
+              "description": "Login y operaciones del rol Administrador (HTTPS + JWT).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "fb3155f3-0976-4f6f-9dbd-6af683591c6d",
+            "shape": "flow",
+            "source": {
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
+            },
+            "target": {
+              "cell": "3ad50282-950f-414c-90be-682fc2c2421f"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-34"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-34",
+              "description": "Despacho a gestion de periodos si rol == Administrador.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "6b121e63-dd1b-42fb-a185-e02ae1c26cc3",
+            "shape": "flow",
+            "source": {
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
+            },
+            "target": {
+              "cell": "08037032-c696-4a6a-83b0-b17d10caedcf"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-35"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-35",
+              "description": "Despacho a gestion de bloques de casilleros si rol == Administrador.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "a2207335-7f00-4c56-a1a8-2fe793d8ff4c",
+            "shape": "flow",
+            "source": {
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
+            },
+            "target": {
+              "cell": "395bc0bc-121c-43e5-8e7f-ee9a75962fba"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-36"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-36",
+              "description": "Despacho a gestion de alquileres si rol == Administrador.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "96b50423-1e27-4f2e-a5f6-9ece75286f5d",
+            "shape": "flow",
+            "source": {
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
+            },
+            "target": {
+              "cell": "d4b84ff2-67aa-4b8d-bcb0-37648c7ea0ad"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-37"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-37",
+              "description": "Despacho a exportacion de reportes si rol == Administrador.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "4cd1a897-f63f-408f-a9de-5f0d8c61348b",
+            "shape": "flow",
+            "source": {
+              "cell": "3ad50282-950f-414c-90be-682fc2c2421f"
+            },
+            "target": {
+              "cell": "cc28859f-f638-4393-bfba-287c4c1184a2"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-38"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-38",
+              "description": "CRUD de periodos academicos (activacion exclusiva, transaccion atomica).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "1e4626c4-c772-46ff-82fc-f28d28a67629",
+            "shape": "flow",
+            "source": {
+              "cell": "08037032-c696-4a6a-83b0-b17d10caedcf"
+            },
+            "target": {
+              "cell": "cc28859f-f638-4393-bfba-287c4c1184a2"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-39"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-39",
+              "description": "Creacion de bloques NxM de casilleros con dimensiones y configuracion.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "524365fb-574f-4f58-86ff-2d4af965b19c",
+            "shape": "flow",
+            "source": {
+              "cell": "395bc0bc-121c-43e5-8e7f-ee9a75962fba"
+            },
+            "target": {
+              "cell": "9157a1f2-b976-4113-b36e-66a13d9d2bf9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-40"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-40",
+              "description": "Filtros y gestion de alquileres excepcionales.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "6f3fb265-2613-42d4-a9d0-60032d4dfe70",
+            "shape": "flow",
+            "source": {
+              "cell": "d4b84ff2-67aa-4b8d-bcb0-37648c7ea0ad"
+            },
+            "target": {
+              "cell": "9157a1f2-b976-4113-b36e-66a13d9d2bf9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-41"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-41",
+              "description": "Lectura agregada para generar XLSX de reporte.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "5221f8d0-d829-48d1-83a3-a991153ffc55",
+            "shape": "flow",
+            "source": {
+              "cell": "d4b84ff2-67aa-4b8d-bcb0-37648c7ea0ad"
+            },
+            "target": {
+              "cell": "5d7d6c84-dff6-475a-b288-d7d6bb132963"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-42"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-42",
+              "description": "Descarga del XLSX con datos de alquileres.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "25b1354a-f5ba-4b82-8bb5-c23b1bfbb920",
+            "shape": "flow",
+            "source": {
+              "cell": "395bc0bc-121c-43e5-8e7f-ee9a75962fba"
+            },
+            "target": {
+              "cell": "4d14028f-643f-4cc6-8573-3e035d1173f9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-43"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-43",
+              "description": "Notificacion de operaciones administrativas para auditoria.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "9f584ce4-bb44-415c-a263-b6b9b4e9ec5c",
+            "shape": "flow",
+            "source": {
+              "cell": "4d14028f-643f-4cc6-8573-3e035d1173f9"
+            },
+            "target": {
+              "cell": "32218c59-68c7-41b9-b0c8-fd9fd64e35dc"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-44"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-44",
+              "description": "Append-only de eventos de auditoria firmados con HMAC (AUD-01).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "9775b91e-69c0-47b9-b3ad-e46a3f3efce8",
+            "shape": "flow",
+            "source": {
+              "cell": "440c0235-4cb6-4ab7-afe7-56d83ecf1261"
+            },
+            "target": {
+              "cell": "9157a1f2-b976-4113-b36e-66a13d9d2bf9"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-45"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-45",
+              "description": "Limpieza de PreRentals expirados y cierre de alquileres vencidos cada 60 segundos.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "662d69ae-7b34-4210-81ee-eaa30bbf9d88",
+            "shape": "flow",
+            "source": {
+              "cell": "d352224b-2be1-40af-9e43-3f607dbf0902"
+            },
+            "target": {
+              "cell": "73306469-719a-4200-9c2a-4a75c1667946"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-46"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-46",
+              "description": "Lectura de secretos SMTP (usuario, password) desde Azure Key Vault al arranque.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "c874ac9b-1831-4dc7-9fa7-df945eb1b99d",
+            "shape": "flow",
+            "source": {
+              "cell": "59093a28-172e-480c-80bd-9669a0241da9"
+            },
+            "target": {
+              "cell": "73306469-719a-4200-9c2a-4a75c1667946"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-47"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-47",
+              "description": "Lectura del Bearer token de PayPhone desde Azure Key Vault.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "38515052-192a-433c-bae8-d8e51b961317",
+            "shape": "flow",
+            "source": {
+              "cell": "a2dadb38-ce00-4c63-a89b-3a38c5c50778"
+            },
+            "target": {
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-48"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-48",
+              "description": "Trafico hostil dirigido al perimetro: scan de puertos, fuzzing, OWASP Top 10.",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "241a5c88-4766-42b8-b9db-64ed7d3a7bd6",
+            "shape": "flow",
+            "source": {
+              "cell": "cad505c0-e7da-432f-b34e-d124592dc6cd"
+            },
+            "target": {
+              "cell": "629b168e-2f93-43e6-b968-0a053e11c1e7"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-49"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-49",
+              "description": "Despliegue del monolito tras pasar SAST (SonarQube) y DAST (OWASP ZAP).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "68636a65-bc7e-4271-b471-51e0f8a3a73d",
+            "shape": "flow",
+            "source": {
+              "cell": "23cccf0b-7dc5-43ce-8a70-bb96cb40c666"
+            },
+            "target": {
+              "cell": "59d0a9d6-6d66-43f1-892a-985bf4a39f65"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-50"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-50",
+              "description": "Logs estructurados de validacion JWT con anonimizacion de PII (mask de IDs sensibles).",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": []
             },
