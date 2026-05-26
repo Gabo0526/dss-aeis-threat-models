@@ -1,5 +1,5 @@
 {
-  "version": "2.4",
+  "version": "2.6.2",
   "summary": {
     "title": "Webapp-AEIS Threat Model - DSS 2026A",
     "owner": "Gabriel Vasconez (Gabo0526)",
@@ -32,11 +32,1080 @@
         "diagramType": "STRIDE",
         "placeholder": "New diagram",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
-        "version": "2.0.0",
+        "version": "2.6.2",
         "cells": [
           {
-            "id": "59798db6-5f22-418f-9714-5861f89fecf5",
-            "shape": "actor",
+            "position": {
+              "x": 280,
+              "y": 20
+            },
+            "size": {
+              "width": 8,
+              "height": 1140
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-01 Internet vs Capa Web"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 0,
+            "id": "b3df73c1-f779-48c5-9fc7-99ae666f2ed7",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-01 Internet vs Capa Web",
+              "description": "Frontera de confianza identificada en la Parte 3.",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "ba2024ec-8d16-4d29-98f8-75b660a14194",
+                  "number": 20,
+                  "title": "T-20: CSRF y SameSite no verificados",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "containedElements": [],
+              "crossingFlows": []
+            }
+          },
+          {
+            "position": {
+              "x": 350.0000000000001,
+              "y": 179.99999999999994
+            },
+            "size": {
+              "width": 580,
+              "height": 530
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-02 Capa Web vs Servicios"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 0,
+            "id": "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-02 Capa Web vs Servicios",
+              "description": "Frontera de confianza identificada en la Parte 3.",
+              "outOfScope": false,
+              "threats": [],
+              "hasOpenThreats": false,
+              "containedElements": [
+                "62be0819-f331-45f6-b0ef-87d2b3763bef",
+                "dbc5340d-6927-4a53-adf0-134dea6f3de3",
+                "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e",
+                "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
+              ],
+              "crossingFlows": [
+                "b08a522f-fa3e-456f-9b6d-247484331b03",
+                "b72b035b-523c-4106-8537-65cf0547be03",
+                "ced42fd4-b548-415b-94e3-b39880b3d5ce",
+                "57a1f669-7fd5-4342-887b-d64f73cffaf8",
+                "06106495-cd46-4359-a61e-0b8075310aff",
+                "28ad2134-3527-482e-b564-27170b99da12",
+                "4e3332b7-5007-408b-87d0-516de814dd15",
+                "4c90ba57-4d0f-49e1-9c11-187f54f560f0",
+                "35cc7fe4-2f89-4aef-912d-17dcfe5f5767",
+                "f10c7d35-3ef6-48e7-a621-b3142c4ba56a",
+                "24ad6fcf-e2aa-461a-a3ec-b318ea17e039",
+                "cbb75a69-2346-4d5b-9a5b-6682a1ef01cc"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 350,
+              "y": 850
+            },
+            "size": {
+              "width": 940,
+              "height": 130
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-03 Zona Usuario vs Admin"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 0,
+            "id": "0399f1c0-6299-438d-ad0c-37d684bd74e1",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-03 Zona Usuario vs Admin",
+              "description": "Frontera de confianza identificada en la Parte 3.",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "e1c6936d-20ce-4c96-a651-4bc124b0a8a8",
+                  "number": 19,
+                  "title": "T-19: Privilegios todo o nada por falta del rol Registrador",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "containedElements": [
+                "6c2085c1-de29-49a0-97bd-67fdea2c08e0",
+                "ba43d964-30cc-4d7f-afdf-271d67d5aa65",
+                "ed58ac68-6077-49d1-981b-1e287b707a14",
+                "eddd8907-e875-4e2d-ab9b-c47976b60e53"
+              ],
+              "crossingFlows": [
+                "cb7962c1-285b-40e3-9156-7ecde3fd8dfb",
+                "2fa9d71b-2b51-4aff-8928-ae857d4b32d7"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 700,
+              "y": -20.000000000000057
+            },
+            "size": {
+              "width": 620,
+              "height": 840
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-04 App vs Base de Datos"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 0,
+            "id": "5286c5cc-360e-41b7-813f-43a0f7104242",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-04 App vs Base de Datos",
+              "description": "Frontera de confianza identificada en la Parte 3.",
+              "outOfScope": false,
+              "threats": [],
+              "hasOpenThreats": false,
+              "containedElements": [
+                "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4",
+                "3a60c106-0a4d-45bc-aef8-a2eef064ebed",
+                "bb5984ee-320a-4e39-84ee-b850023bd637",
+                "7df1afc9-b245-4b26-acf0-413e25ee3e9d",
+                "68d8b74d-bf9a-4442-98b1-059a4cdcbf5c",
+                "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
+              ],
+              "crossingFlows": [
+                "b72b035b-523c-4106-8537-65cf0547be03",
+                "06106495-cd46-4359-a61e-0b8075310aff",
+                "4c90ba57-4d0f-49e1-9c11-187f54f560f0",
+                "f10c7d35-3ef6-48e7-a621-b3142c4ba56a",
+                "179be8f5-3cc2-438c-9311-1fae7847511e",
+                "ee296c89-9adb-4724-bbab-0467b1dab375"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1390,
+              "y": 340
+            },
+            "size": {
+              "width": 8,
+              "height": 220
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-05 App vs PayPhone"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 0,
+            "id": "249353d1-e4e9-4337-a2e5-751509ab2c8c",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-05 App vs PayPhone",
+              "description": "Frontera de confianza identificada en la Parte 3.",
+              "outOfScope": false,
+              "threats": [],
+              "containedElements": [],
+              "crossingFlows": []
+            }
+          },
+          {
+            "position": {
+              "x": 1390,
+              "y": 120
+            },
+            "size": {
+              "width": 260,
+              "height": 140
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-06 App vs SMTP"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 0,
+            "id": "7d75678e-f2bf-4698-ad8a-2c4342a93df5",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-06 App vs SMTP",
+              "description": "Frontera de confianza identificada en la Parte 3.",
+              "outOfScope": false,
+              "threats": [],
+              "containedElements": [
+                "a98c442b-62c9-4618-9c46-3979777f1be4"
+              ],
+              "crossingFlows": [
+                "ced42fd4-b548-415b-94e3-b39880b3d5ce",
+                "daa731db-a006-4514-ad3a-5811008dde81"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 350,
+              "y": 1080
+            },
+            "size": {
+              "width": 240,
+              "height": 110
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-07 App vs Almacen Secretos"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 0,
+            "id": "7a6dc2bb-202e-4004-8596-30dd7f7b8c19",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-07 App vs Almacen Secretos",
+              "description": "Frontera de confianza identificada en la Parte 3.",
+              "outOfScope": false,
+              "threats": [],
+              "containedElements": [
+                "99d9d253-beb4-4756-953f-586d6e888ecc"
+              ],
+              "crossingFlows": [
+                "24ad6fcf-e2aa-461a-a3ec-b318ea17e039"
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-01",
+              "description": "Datos de registro: cedula, correo, password, codigo unico, facultad (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-01"
+                  }
+                }
+              }
+            ],
+            "id": "b08a522f-fa3e-456f-9b6d-247484331b03",
+            "source": {
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
+            },
+            "target": {
+              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-02",
+              "description": "Persistir user + hash BCrypt (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af",
+                "5286c5cc-360e-41b7-813f-43a0f7104242"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-02"
+                  }
+                }
+              }
+            ],
+            "id": "b72b035b-523c-4106-8537-65cf0547be03",
+            "source": {
+              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
+            },
+            "target": {
+              "cell": "7df1afc9-b245-4b26-acf0-413e25ee3e9d"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-03",
+              "description": "Enviar correo SMTP con enlace y token UUID (MEDIA-ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af",
+                "7d75678e-f2bf-4698-ad8a-2c4342a93df5"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-03"
+                  }
+                }
+              }
+            ],
+            "id": "ced42fd4-b548-415b-94e3-b39880b3d5ce",
+            "source": {
+              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
+            },
+            "target": {
+              "cell": "a98c442b-62c9-4618-9c46-3979777f1be4"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-04",
+              "description": "Correo de verificacion entregado al estudiante (MEDIA-ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "7d75678e-f2bf-4698-ad8a-2c4342a93df5"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-04"
+                  }
+                }
+              }
+            ],
+            "id": "daa731db-a006-4514-ad3a-5811008dde81",
+            "source": {
+              "cell": "a98c442b-62c9-4618-9c46-3979777f1be4"
+            },
+            "target": {
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-05",
+              "description": "Credenciales username y password sobre HTTPS (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-05"
+                  }
+                }
+              }
+            ],
+            "id": "57a1f669-7fd5-4342-887b-d64f73cffaf8",
+            "source": {
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
+            },
+            "target": {
+              "cell": "dbc5340d-6927-4a53-adf0-134dea6f3de3"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-06",
+              "description": "Lectura del hash BCrypt (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af",
+                "5286c5cc-360e-41b7-813f-43a0f7104242"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-06"
+                  }
+                }
+              }
+            ],
+            "id": "06106495-cd46-4359-a61e-0b8075310aff",
+            "source": {
+              "cell": "dbc5340d-6927-4a53-adf0-134dea6f3de3"
+            },
+            "target": {
+              "cell": "7df1afc9-b245-4b26-acf0-413e25ee3e9d"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-07",
+              "description": "Consulta de bloques y casilleros (BAJA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-07"
+                  }
+                }
+              }
+            ],
+            "id": "28ad2134-3527-482e-b564-27170b99da12",
+            "source": {
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
+            },
+            "target": {
+              "cell": "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-08",
+              "description": "Lectura del catalogo (BAJA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-08"
+                  }
+                }
+              }
+            ],
+            "id": "4e3332b7-5007-408b-87d0-516de814dd15",
+            "source": {
+              "cell": "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e"
+            },
+            "target": {
+              "cell": "a904cc2b-dc64-416d-b714-7f182e0a3280"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-09",
+              "description": "POST de alquiler con startDate y endDate (MEDIA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af",
+                "5286c5cc-360e-41b7-813f-43a0f7104242"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-09"
+                  }
+                }
+              }
+            ],
+            "id": "4c90ba57-4d0f-49e1-9c11-187f54f560f0",
+            "source": {
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
+            },
+            "target": {
+              "cell": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-10",
+              "description": "Creacion de PreRental + PESSIMISTIC_WRITE (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-10"
+                  }
+                }
+              }
+            ],
+            "id": "35cc7fe4-2f89-4aef-912d-17dcfe5f5767",
+            "source": {
+              "cell": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
+            },
+            "target": {
+              "cell": "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-11",
+              "description": "Vista checkout con token, storeId, clientTxId y amount (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af",
+                "5286c5cc-360e-41b7-813f-43a0f7104242"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-11"
+                  }
+                }
+              }
+            ],
+            "id": "f10c7d35-3ef6-48e7-a621-b3142c4ba56a",
+            "source": {
+              "cell": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
+            },
+            "target": {
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-12",
+              "description": "Pago directo del estudiante a PayPhone (FUERA DE ALCANCE)",
+              "outOfScope": true,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-12"
+                  }
+                }
+              }
+            ],
+            "id": "f27702f2-51e5-4317-a5bf-200e8f2e0cc7",
+            "source": {
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
+            },
+            "target": {
+              "cell": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-13",
+              "description": "Redireccion al webhook con id y clientTransactionId (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "5286c5cc-360e-41b7-813f-43a0f7104242"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-13"
+                  }
+                }
+              }
+            ],
+            "id": "179be8f5-3cc2-438c-9311-1fae7847511e",
+            "source": {
+              "cell": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4"
+            },
+            "target": {
+              "cell": "3a60c106-0a4d-45bc-aef8-a2eef064ebed"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-14",
+              "description": "POST de confirmacion con Bearer token a PayPhone (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "5286c5cc-360e-41b7-813f-43a0f7104242"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-14"
+                  }
+                }
+              }
+            ],
+            "id": "ee296c89-9adb-4724-bbab-0467b1dab375",
+            "source": {
+              "cell": "3a60c106-0a4d-45bc-aef8-a2eef064ebed"
+            },
+            "target": {
+              "cell": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-15",
+              "description": "Persistencia del resultado del pago (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-15"
+                  }
+                }
+              }
+            ],
+            "id": "03a7153e-e24d-4a20-ba16-6f1686742808",
+            "source": {
+              "cell": "3a60c106-0a4d-45bc-aef8-a2eef064ebed"
+            },
+            "target": {
+              "cell": "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-16",
+              "description": "Operaciones administrativas con rol ADMIN (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "0399f1c0-6299-438d-ad0c-37d684bd74e1"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-16"
+                  }
+                }
+              }
+            ],
+            "id": "cb7962c1-285b-40e3-9156-7ecde3fd8dfb",
+            "source": {
+              "cell": "d82f21e9-9ca0-40ab-a319-a0139238a1c2"
+            },
+            "target": {
+              "cell": "ed58ac68-6077-49d1-981b-1e287b707a14"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-17",
+              "description": "Descarga del XLSX con datos de alquileres (MEDIA-ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "0399f1c0-6299-438d-ad0c-37d684bd74e1"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-17"
+                  }
+                }
+              }
+            ],
+            "id": "2fa9d71b-2b51-4aff-8928-ae857d4b32d7",
+            "source": {
+              "cell": "eddd8907-e875-4e2d-ab9b-c47976b60e53"
+            },
+            "target": {
+              "cell": "d82f21e9-9ca0-40ab-a319-a0139238a1c2"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-18",
+              "description": "Limpieza de pre-alquileres y cierre de vencidos (MEDIA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-18"
+                  }
+                }
+              }
+            ],
+            "id": "1af8ce2b-f5b1-4d82-9f6f-f17e03556b84",
+            "source": {
+              "cell": "bb5984ee-320a-4e39-84ee-b850023bd637"
+            },
+            "target": {
+              "cell": "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-19",
+              "description": "Lectura de secretos al arranque (ALTA)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af",
+                "7a6dc2bb-202e-4004-8596-30dd7f7b8c19"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-19"
+                  }
+                }
+              }
+            ],
+            "id": "24ad6fcf-e2aa-461a-a3ec-b318ea17e039",
+            "source": {
+              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
+            },
+            "target": {
+              "cell": "99d9d253-beb4-4756-953f-586d6e888ecc"
+            }
+          },
+          {
+            "shape": "flow",
+            "width": 200,
+            "height": 100,
+            "zIndex": 5,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-20",
+              "description": "Trafico hostil hacia los puntos de entrada publicos",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-20"
+                  }
+                }
+              }
+            ],
+            "id": "cbb75a69-2346-4d5b-9a5b-6682a1ef01cc",
+            "source": {
+              "cell": "2fcf7509-303f-4c97-b81c-723885c906f7"
+            },
+            "target": {
+              "cell": "dbc5340d-6927-4a53-adf0-134dea6f3de3"
+            }
+          },
+          {
             "position": {
               "x": 60,
               "y": 400
@@ -50,6 +1119,92 @@
                 "text": "EE-01 Estudiante"
               }
             },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "f62d15d3-eb2e-4ed8-b1e6-3b5995543d90"
+                },
+                {
+                  "group": "right",
+                  "id": "3cab0677-2233-4447-8917-5f2407351bcf"
+                },
+                {
+                  "group": "bottom",
+                  "id": "2d46a5c0-86d8-4245-b226-4a0067ae429a"
+                },
+                {
+                  "group": "left",
+                  "id": "d3a85abd-f2fe-4941-9110-a1bb9eb1fbc8"
+                }
+              ]
+            },
+            "id": "59798db6-5f22-418f-9714-5861f89fecf5",
             "data": {
               "type": "tm.Actor",
               "name": "EE-01 Estudiante",
@@ -57,12 +1212,9 @@
               "outOfScope": false,
               "threats": [],
               "providesAuthentication": false
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "d82f21e9-9ca0-40ab-a319-a0139238a1c2",
-            "shape": "actor",
             "position": {
               "x": 60,
               "y": 720
@@ -76,6 +1228,92 @@
                 "text": "EE-02 Administrador"
               }
             },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "06c4a03d-254f-4304-aa4d-7926417146b5"
+                },
+                {
+                  "group": "right",
+                  "id": "50ea66a0-d111-4a31-93b7-dd6a584ebd8d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "696929a0-e88e-41b7-b1d8-410f3a1a2ab8"
+                },
+                {
+                  "group": "left",
+                  "id": "55547cd8-fe1e-432f-b0c2-b1a3b6aac5c0"
+                }
+              ]
+            },
+            "id": "d82f21e9-9ca0-40ab-a319-a0139238a1c2",
             "data": {
               "type": "tm.Actor",
               "name": "EE-02 Administrador",
@@ -83,12 +1321,9 @@
               "outOfScope": false,
               "threats": [],
               "providesAuthentication": false
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "2fcf7509-303f-4c97-b81c-723885c906f7",
-            "shape": "actor",
             "position": {
               "x": 60,
               "y": 1100
@@ -102,6 +1337,92 @@
                 "text": "EE-05 Atacante"
               }
             },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "ed88bcca-af90-4b84-8d66-b011def207d2"
+                },
+                {
+                  "group": "right",
+                  "id": "795d979d-3d72-4792-b0a7-6c3f0766d2b8"
+                },
+                {
+                  "group": "bottom",
+                  "id": "b4d20f55-0c82-44d4-b64d-d06e7f6085e9"
+                },
+                {
+                  "group": "left",
+                  "id": "4cf14a23-84dc-47c6-8e6e-c56504a34fdd"
+                }
+              ]
+            },
+            "id": "2fcf7509-303f-4c97-b81c-723885c906f7",
             "data": {
               "type": "tm.Actor",
               "name": "EE-05 Atacante",
@@ -109,12 +1430,9 @@
               "outOfScope": false,
               "threats": [],
               "providesAuthentication": false
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4",
-            "shape": "actor",
             "position": {
               "x": 1440,
               "y": 450
@@ -128,6 +1446,92 @@
                 "text": "EE-03 PayPhone API"
               }
             },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "1b8531a8-594f-4e18-b934-5fe79af8d237"
+                },
+                {
+                  "group": "right",
+                  "id": "fc637f13-4de7-4719-ae6c-3cc2840d2805"
+                },
+                {
+                  "group": "bottom",
+                  "id": "17b38abe-7a62-4d92-a51c-17586a1dd09f"
+                },
+                {
+                  "group": "left",
+                  "id": "a31b3be7-b606-4c3b-b419-e97470ce7838"
+                }
+              ]
+            },
+            "id": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4",
             "data": {
               "type": "tm.Actor",
               "name": "EE-03 PayPhone API",
@@ -135,12 +1539,9 @@
               "outOfScope": true,
               "threats": [],
               "providesAuthentication": false
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "a98c442b-62c9-4618-9c46-3979777f1be4",
-            "shape": "actor",
             "position": {
               "x": 1440,
               "y": 160
@@ -154,6 +1555,92 @@
                 "text": "EE-04 SMTP Gmail"
               }
             },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "5535d92f-93de-41eb-8265-26d930f4d14d"
+                },
+                {
+                  "group": "right",
+                  "id": "687384d6-e6d0-4038-a438-76ff6eeae016"
+                },
+                {
+                  "group": "bottom",
+                  "id": "9b4e4320-af93-408a-a24f-1f6347a050d9"
+                },
+                {
+                  "group": "left",
+                  "id": "e99b2617-b0d6-405c-ad5e-f87617ff14b5"
+                }
+              ]
+            },
+            "id": "a98c442b-62c9-4618-9c46-3979777f1be4",
             "data": {
               "type": "tm.Actor",
               "name": "EE-04 SMTP Gmail",
@@ -173,12 +1660,9 @@
                 }
               ],
               "providesAuthentication": false
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "62be0819-f331-45f6-b0ef-87d2b3763bef",
-            "shape": "process",
             "position": {
               "x": 380,
               "y": 220
@@ -188,10 +1672,101 @@
               "height": 90
             },
             "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
               "label": {
                 "text": "P-01 Registro y Verificacion"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "2529cd18-5c06-4497-9d8a-bfc342f34c98"
+                },
+                {
+                  "group": "right",
+                  "id": "7231ed27-10b8-433c-b8f8-03fa505fcde5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "59e47806-b83a-43d0-bb24-48ae77f1b94f"
+                },
+                {
+                  "group": "left",
+                  "id": "57454ee2-8f10-4176-bdfc-aa3e77af8d95"
+                }
+              ]
+            },
+            "id": "62be0819-f331-45f6-b0ef-87d2b3763bef",
             "data": {
               "type": "tm.Process",
               "name": "P-01 Registro y Verificacion",
@@ -223,13 +1798,11 @@
               ],
               "handlesCardPayment": false,
               "isWebApplication": true,
-              "privilegeLevel": "User"
-            },
-            "zIndex": 10
+              "privilegeLevel": "User",
+              "hasOpenThreats": true
+            }
           },
           {
-            "id": "dbc5340d-6927-4a53-adf0-134dea6f3de3",
-            "shape": "process",
             "position": {
               "x": 380,
               "y": 400
@@ -239,10 +1812,101 @@
               "height": 90
             },
             "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
               "label": {
                 "text": "P-02 Login"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "becfa49f-2f41-4941-b3e1-82a1958a949f"
+                },
+                {
+                  "group": "right",
+                  "id": "7c3e7f08-8d83-434c-92f3-deba07df6203"
+                },
+                {
+                  "group": "bottom",
+                  "id": "609485c1-5654-469f-9133-c3c50272abd0"
+                },
+                {
+                  "group": "left",
+                  "id": "4670e3cd-a804-4aec-944c-3144f5abf972"
+                }
+              ]
+            },
+            "id": "dbc5340d-6927-4a53-adf0-134dea6f3de3",
             "data": {
               "type": "tm.Process",
               "name": "P-02 Login",
@@ -285,13 +1949,11 @@
               ],
               "handlesCardPayment": false,
               "isWebApplication": true,
-              "privilegeLevel": "User"
-            },
-            "zIndex": 10
+              "privilegeLevel": "User",
+              "hasOpenThreats": true
+            }
           },
           {
-            "id": "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e",
-            "shape": "process",
             "position": {
               "x": 380,
               "y": 580
@@ -305,6 +1967,92 @@
                 "text": "P-03 Ver Casilleros"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "468805ca-f675-4316-b6d4-7fe5f106c7d3"
+                },
+                {
+                  "group": "right",
+                  "id": "0b8fb613-320f-45c4-86e5-ee3beab01b76"
+                },
+                {
+                  "group": "bottom",
+                  "id": "07907b82-e4d6-4616-b599-f362dd33e209"
+                },
+                {
+                  "group": "left",
+                  "id": "b7577236-b868-464c-8d87-ae3bf6993f5c"
+                }
+              ]
+            },
+            "id": "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e",
             "data": {
               "type": "tm.Process",
               "name": "P-03 Ver Casilleros",
@@ -314,12 +2062,9 @@
               "handlesCardPayment": false,
               "isWebApplication": true,
               "privilegeLevel": "User"
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4",
-            "shape": "process",
             "position": {
               "x": 720,
               "y": 400
@@ -333,6 +2078,92 @@
                 "text": "P-04 Pre-Alquiler"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "989ddb15-4b51-494e-8f45-2430332bb574"
+                },
+                {
+                  "group": "right",
+                  "id": "53f38455-fba1-434b-ad65-73d4070976f4"
+                },
+                {
+                  "group": "bottom",
+                  "id": "ef1adba2-c55d-4a83-8854-75b2fccfd50c"
+                },
+                {
+                  "group": "left",
+                  "id": "22e32d6f-2488-4324-98e6-1cfcd662d605"
+                }
+              ]
+            },
+            "id": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4",
             "data": {
               "type": "tm.Process",
               "name": "P-04 Pre-Alquiler",
@@ -387,12 +2218,9 @@
               "handlesCardPayment": true,
               "isWebApplication": true,
               "privilegeLevel": "User"
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "3a60c106-0a4d-45bc-aef8-a2eef064ebed",
-            "shape": "process",
             "position": {
               "x": 1060,
               "y": 400
@@ -406,6 +2234,92 @@
                 "text": "P-05 Webhook PayPhone"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "eb325dd8-0f4b-4190-a715-d706e1d54a02"
+                },
+                {
+                  "group": "right",
+                  "id": "040fda97-afa9-4eb1-b79e-2d0f80992162"
+                },
+                {
+                  "group": "bottom",
+                  "id": "82952b78-c544-4304-82bc-300e32b473a9"
+                },
+                {
+                  "group": "left",
+                  "id": "2086e84c-1d31-413b-8701-f17fb5dd09ea"
+                }
+              ]
+            },
+            "id": "3a60c106-0a4d-45bc-aef8-a2eef064ebed",
             "data": {
               "type": "tm.Process",
               "name": "P-05 Webhook PayPhone",
@@ -460,12 +2374,9 @@
               "handlesCardPayment": true,
               "isWebApplication": true,
               "privilegeLevel": "User"
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "bb5984ee-320a-4e39-84ee-b850023bd637",
-            "shape": "process",
             "position": {
               "x": 1060,
               "y": 580
@@ -479,6 +2390,92 @@
                 "text": "P-10 Schedulers"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "a91b0e4b-d896-49f1-9903-202914e1e14b"
+                },
+                {
+                  "group": "right",
+                  "id": "9a0d4b70-b2ff-4f3f-b25e-1965ea6aba2e"
+                },
+                {
+                  "group": "bottom",
+                  "id": "1a7c03d4-c72a-4943-a3e4-f16ce40880f6"
+                },
+                {
+                  "group": "left",
+                  "id": "9bfd1135-83a3-4195-bb56-22a5c08b0c8e"
+                }
+              ]
+            },
+            "id": "bb5984ee-320a-4e39-84ee-b850023bd637",
             "data": {
               "type": "tm.Process",
               "name": "P-10 Schedulers",
@@ -500,12 +2497,9 @@
               "handlesCardPayment": false,
               "isWebApplication": true,
               "privilegeLevel": "User"
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "6c2085c1-de29-49a0-97bd-67fdea2c08e0",
-            "shape": "process",
             "position": {
               "x": 380,
               "y": 880
@@ -519,6 +2513,92 @@
                 "text": "P-06 Gestion Periodos"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "1a59b518-1943-4d4d-a04c-58cce450ce58"
+                },
+                {
+                  "group": "right",
+                  "id": "52901a26-95b7-4aaa-bdb8-f4c64925597f"
+                },
+                {
+                  "group": "bottom",
+                  "id": "0a8f3d4b-35c6-4c50-9ab5-502caf2bade1"
+                },
+                {
+                  "group": "left",
+                  "id": "6cbc5915-c7b1-4325-bc1c-86577e06e215"
+                }
+              ]
+            },
+            "id": "6c2085c1-de29-49a0-97bd-67fdea2c08e0",
             "data": {
               "type": "tm.Process",
               "name": "P-06 Gestion Periodos",
@@ -528,12 +2608,9 @@
               "handlesCardPayment": false,
               "isWebApplication": true,
               "privilegeLevel": "Admin"
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "ba43d964-30cc-4d7f-afdf-271d67d5aa65",
-            "shape": "process",
             "position": {
               "x": 620,
               "y": 880
@@ -547,6 +2624,92 @@
                 "text": "P-07 Gestion Bloques-Casilleros"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "5da16a9e-4bec-4ac0-9884-a54ead61838a"
+                },
+                {
+                  "group": "right",
+                  "id": "2136c64e-4461-4bae-816b-1d125e27c040"
+                },
+                {
+                  "group": "bottom",
+                  "id": "5ccaa710-ab98-4160-9b58-dc6ddac9d90a"
+                },
+                {
+                  "group": "left",
+                  "id": "db089eb4-aa0e-487d-bb96-41bdf90c878c"
+                }
+              ]
+            },
+            "id": "ba43d964-30cc-4d7f-afdf-271d67d5aa65",
             "data": {
               "type": "tm.Process",
               "name": "P-07 Gestion Bloques-Casilleros",
@@ -556,12 +2719,9 @@
               "handlesCardPayment": false,
               "isWebApplication": true,
               "privilegeLevel": "Admin"
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "ed58ac68-6077-49d1-981b-1e287b707a14",
-            "shape": "process",
             "position": {
               "x": 860,
               "y": 880
@@ -575,6 +2735,92 @@
                 "text": "P-08 Gestion Alquileres"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "e966e160-1f81-4e0d-b857-426fcf1419cc"
+                },
+                {
+                  "group": "right",
+                  "id": "bf182cff-fbee-4da6-af31-6a68463d76f3"
+                },
+                {
+                  "group": "bottom",
+                  "id": "56a0a077-032b-437e-a072-cd28d25be4a4"
+                },
+                {
+                  "group": "left",
+                  "id": "98f72ebc-4073-40f5-9e9a-d21a416b817f"
+                }
+              ]
+            },
+            "id": "ed58ac68-6077-49d1-981b-1e287b707a14",
             "data": {
               "type": "tm.Process",
               "name": "P-08 Gestion Alquileres",
@@ -596,12 +2842,9 @@
               "handlesCardPayment": false,
               "isWebApplication": true,
               "privilegeLevel": "Admin"
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "eddd8907-e875-4e2d-ab9b-c47976b60e53",
-            "shape": "process",
             "position": {
               "x": 1100,
               "y": 880
@@ -615,6 +2858,92 @@
                 "text": "P-09 Excel Export"
               }
             },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "35b4172a-673e-493f-8885-cea007e1d561"
+                },
+                {
+                  "group": "right",
+                  "id": "f236955a-c097-48ee-b304-1b1c8a1984ea"
+                },
+                {
+                  "group": "bottom",
+                  "id": "334b5161-73b6-4b8d-825e-cfc7099aabae"
+                },
+                {
+                  "group": "left",
+                  "id": "10360049-c629-4bb4-a512-316838c1a8e2"
+                }
+              ]
+            },
+            "id": "eddd8907-e875-4e2d-ab9b-c47976b60e53",
             "data": {
               "type": "tm.Process",
               "name": "P-09 Excel Export",
@@ -647,12 +2976,9 @@
               "handlesCardPayment": false,
               "isWebApplication": true,
               "privilegeLevel": "Admin"
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "b0e8abce-af76-4f2c-b735-e5cb6e86e2f0",
-            "shape": "store",
             "position": {
               "x": 60,
               "y": 40
@@ -666,6 +2992,92 @@
                 "text": "DS-06 Logs"
               }
             },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "165a2f96-505f-4f5b-8dd9-983a3ffc900e"
+                },
+                {
+                  "group": "right",
+                  "id": "9b448120-d3c2-42ce-b005-39fcac32692e"
+                },
+                {
+                  "group": "bottom",
+                  "id": "e226d4ca-ad22-422d-86c1-c63c2b9bb94c"
+                },
+                {
+                  "group": "left",
+                  "id": "622eb309-b4a7-4903-b55f-18a71d2a766c"
+                }
+              ]
+            },
+            "id": "b0e8abce-af76-4f2c-b735-e5cb6e86e2f0",
             "data": {
               "type": "tm.Store",
               "name": "DS-06 Logs",
@@ -687,12 +3099,9 @@
               "isALog": true,
               "isEncrypted": false,
               "storesCredentials": false
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "7df1afc9-b245-4b26-acf0-413e25ee3e9d",
-            "shape": "store",
             "position": {
               "x": 720,
               "y": 40
@@ -706,6 +3115,92 @@
                 "text": "DS-01 BD app_user"
               }
             },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "a9933c8a-5dfe-4794-90b1-f592c8e95b1f"
+                },
+                {
+                  "group": "right",
+                  "id": "71a5472c-d54a-4a20-9e27-07cf5935f663"
+                },
+                {
+                  "group": "bottom",
+                  "id": "0218a957-23d1-4c9c-bfb5-e52733f648de"
+                },
+                {
+                  "group": "left",
+                  "id": "69cd8e4b-14a9-4b14-9b03-f592c110a0e7"
+                }
+              ]
+            },
+            "id": "7df1afc9-b245-4b26-acf0-413e25ee3e9d",
             "data": {
               "type": "tm.Store",
               "name": "DS-01 BD app_user",
@@ -738,12 +3233,9 @@
               "isALog": false,
               "isEncrypted": false,
               "storesCredentials": true
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "68d8b74d-bf9a-4442-98b1-059a4cdcbf5c",
-            "shape": "store",
             "position": {
               "x": 940,
               "y": 40
@@ -757,6 +3249,92 @@
                 "text": "DS-02 BD verification_token"
               }
             },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "262b3335-ab3c-49ef-9043-cbf50b12e82e"
+                },
+                {
+                  "group": "right",
+                  "id": "a46f1c85-34a7-4f8d-9504-d1d54c3a63f2"
+                },
+                {
+                  "group": "bottom",
+                  "id": "162f80f0-16be-4d32-810e-f907776f890c"
+                },
+                {
+                  "group": "left",
+                  "id": "c07494d8-ea03-44fb-81a0-50069d532e23"
+                }
+              ]
+            },
+            "id": "68d8b74d-bf9a-4442-98b1-059a4cdcbf5c",
             "data": {
               "type": "tm.Store",
               "name": "DS-02 BD verification_token",
@@ -778,12 +3356,9 @@
               "isALog": false,
               "isEncrypted": false,
               "storesCredentials": false
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "a904cc2b-dc64-416d-b714-7f182e0a3280",
-            "shape": "store",
             "position": {
               "x": 1160,
               "y": 40
@@ -797,6 +3372,92 @@
                 "text": "DS-03 BD Lockers-Periods"
               }
             },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "32855f5f-2ef6-43eb-9541-9a3fa1fba26d"
+                },
+                {
+                  "group": "right",
+                  "id": "df27877a-c329-4176-ba95-5c0b39576dd2"
+                },
+                {
+                  "group": "bottom",
+                  "id": "8b1e67cb-08e4-4212-b7b4-cb3860a17284"
+                },
+                {
+                  "group": "left",
+                  "id": "955da119-7da8-4968-89e8-b8d643dfba9c"
+                }
+              ]
+            },
+            "id": "a904cc2b-dc64-416d-b714-7f182e0a3280",
             "data": {
               "type": "tm.Store",
               "name": "DS-03 BD Lockers-Periods",
@@ -806,12 +3467,9 @@
               "isALog": false,
               "isEncrypted": false,
               "storesCredentials": false
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "344806b5-b0ef-4865-89d4-49bf2bfb75d9",
-            "shape": "store",
             "position": {
               "x": 1100,
               "y": 720
@@ -825,6 +3483,92 @@
                 "text": "DS-04 BD Rentals"
               }
             },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "28ecc6a8-b01a-4a72-a1d1-a6fb197d989f"
+                },
+                {
+                  "group": "right",
+                  "id": "3436f6ef-fcd0-43d3-af37-4ae7ccccc8fb"
+                },
+                {
+                  "group": "bottom",
+                  "id": "10b1c1c1-63f8-46b1-b9bd-8a0495a6e918"
+                },
+                {
+                  "group": "left",
+                  "id": "f0f28a72-be22-4ad9-a6f8-d680ba273fbd"
+                }
+              ]
+            },
+            "id": "344806b5-b0ef-4865-89d4-49bf2bfb75d9",
             "data": {
               "type": "tm.Store",
               "name": "DS-04 BD Rentals",
@@ -834,12 +3578,9 @@
               "isALog": false,
               "isEncrypted": false,
               "storesCredentials": false
-            },
-            "zIndex": 10
+            }
           },
           {
-            "id": "99d9d253-beb4-4756-953f-586d6e888ecc",
-            "shape": "store",
             "position": {
               "x": 380,
               "y": 1100
@@ -853,6 +3594,92 @@
                 "text": "DS-05 Secretos"
               }
             },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "72ed7d33-dae6-4ce7-85a4-8b8376be97d0"
+                },
+                {
+                  "group": "right",
+                  "id": "966be9de-f0ec-4b18-86f5-fcdaa1d20527"
+                },
+                {
+                  "group": "bottom",
+                  "id": "35975fd2-6d6c-4fce-b385-d51d679c51db"
+                },
+                {
+                  "group": "left",
+                  "id": "aef41e95-370d-48ef-a50a-23e36f28506d"
+                }
+              ]
+            },
+            "id": "99d9d253-beb4-4756-953f-586d6e888ecc",
             "data": {
               "type": "tm.Store",
               "name": "DS-05 Secretos",
@@ -874,807 +3701,7 @@
               "isALog": false,
               "isEncrypted": true,
               "storesCredentials": true
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "b3df73c1-f779-48c5-9fc7-99ae666f2ed7",
-            "shape": "trust-boundary-box",
-            "position": {
-              "x": 280,
-              "y": 20
-            },
-            "size": {
-              "width": 8,
-              "height": 1140
-            },
-            "attrs": {
-              "label": {
-                "text": "TB-01 Internet vs Capa Web"
-              }
-            },
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-01 Internet vs Capa Web",
-              "description": "Frontera de confianza identificada en la Parte 3.",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "ba2024ec-8d16-4d29-98f8-75b660a14194",
-                  "number": 20,
-                  "title": "T-20: CSRF y SameSite no verificados",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ]
-            },
-            "zIndex": 0
-          },
-          {
-            "id": "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af",
-            "shape": "trust-boundary-box",
-            "position": {
-              "x": 350,
-              "y": 190
-            },
-            "size": {
-              "width": 580,
-              "height": 520
-            },
-            "attrs": {
-              "label": {
-                "text": "TB-02 Capa Web vs Servicios"
-              }
-            },
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-02 Capa Web vs Servicios",
-              "description": "Frontera de confianza identificada en la Parte 3.",
-              "outOfScope": false,
-              "threats": []
-            },
-            "zIndex": 0
-          },
-          {
-            "id": "0399f1c0-6299-438d-ad0c-37d684bd74e1",
-            "shape": "trust-boundary-box",
-            "position": {
-              "x": 350,
-              "y": 850
-            },
-            "size": {
-              "width": 940,
-              "height": 130
-            },
-            "attrs": {
-              "label": {
-                "text": "TB-03 Zona Usuario vs Admin"
-              }
-            },
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-03 Zona Usuario vs Admin",
-              "description": "Frontera de confianza identificada en la Parte 3.",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "e1c6936d-20ce-4c96-a651-4bc124b0a8a8",
-                  "number": 19,
-                  "title": "T-19: Privilegios todo o nada por falta del rol Registrador",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Elevation of privilege",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ]
-            },
-            "zIndex": 0
-          },
-          {
-            "id": "5286c5cc-360e-41b7-813f-43a0f7104242",
-            "shape": "trust-boundary-box",
-            "position": {
-              "x": 700,
-              "y": 20
-            },
-            "size": {
-              "width": 620,
-              "height": 800
-            },
-            "attrs": {
-              "label": {
-                "text": "TB-04 App vs Base de Datos"
-              }
-            },
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-04 App vs Base de Datos",
-              "description": "Frontera de confianza identificada en la Parte 3.",
-              "outOfScope": false,
-              "threats": []
-            },
-            "zIndex": 0
-          },
-          {
-            "id": "249353d1-e4e9-4337-a2e5-751509ab2c8c",
-            "shape": "trust-boundary-box",
-            "position": {
-              "x": 1390,
-              "y": 340
-            },
-            "size": {
-              "width": 8,
-              "height": 220
-            },
-            "attrs": {
-              "label": {
-                "text": "TB-05 App vs PayPhone"
-              }
-            },
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-05 App vs PayPhone",
-              "description": "Frontera de confianza identificada en la Parte 3.",
-              "outOfScope": false,
-              "threats": []
-            },
-            "zIndex": 0
-          },
-          {
-            "id": "7d75678e-f2bf-4698-ad8a-2c4342a93df5",
-            "shape": "trust-boundary-box",
-            "position": {
-              "x": 1390,
-              "y": 120
-            },
-            "size": {
-              "width": 260,
-              "height": 140
-            },
-            "attrs": {
-              "label": {
-                "text": "TB-06 App vs SMTP"
-              }
-            },
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-06 App vs SMTP",
-              "description": "Frontera de confianza identificada en la Parte 3.",
-              "outOfScope": false,
-              "threats": []
-            },
-            "zIndex": 0
-          },
-          {
-            "id": "7a6dc2bb-202e-4004-8596-30dd7f7b8c19",
-            "shape": "trust-boundary-box",
-            "position": {
-              "x": 350,
-              "y": 1080
-            },
-            "size": {
-              "width": 240,
-              "height": 110
-            },
-            "attrs": {
-              "label": {
-                "text": "TB-07 App vs Almacen Secretos"
-              }
-            },
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "TB-07 App vs Almacen Secretos",
-              "description": "Frontera de confianza identificada en la Parte 3.",
-              "outOfScope": false,
-              "threats": []
-            },
-            "zIndex": 0
-          },
-          {
-            "id": "b08a522f-fa3e-456f-9b6d-247484331b03",
-            "shape": "flow",
-            "source": {
-              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
-            },
-            "target": {
-              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-01"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-01",
-              "description": "Datos de registro: cedula, correo, password, codigo unico, facultad (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "b72b035b-523c-4106-8537-65cf0547be03",
-            "shape": "flow",
-            "source": {
-              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
-            },
-            "target": {
-              "cell": "7df1afc9-b245-4b26-acf0-413e25ee3e9d"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-02"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-02",
-              "description": "Persistir user + hash BCrypt (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "ced42fd4-b548-415b-94e3-b39880b3d5ce",
-            "shape": "flow",
-            "source": {
-              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
-            },
-            "target": {
-              "cell": "a98c442b-62c9-4618-9c46-3979777f1be4"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-03"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-03",
-              "description": "Enviar correo SMTP con enlace y token UUID (MEDIA-ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "daa731db-a006-4514-ad3a-5811008dde81",
-            "shape": "flow",
-            "source": {
-              "cell": "a98c442b-62c9-4618-9c46-3979777f1be4"
-            },
-            "target": {
-              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-04"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-04",
-              "description": "Correo de verificacion entregado al estudiante (MEDIA-ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "57a1f669-7fd5-4342-887b-d64f73cffaf8",
-            "shape": "flow",
-            "source": {
-              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
-            },
-            "target": {
-              "cell": "dbc5340d-6927-4a53-adf0-134dea6f3de3"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-05"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-05",
-              "description": "Credenciales username y password sobre HTTPS (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "06106495-cd46-4359-a61e-0b8075310aff",
-            "shape": "flow",
-            "source": {
-              "cell": "dbc5340d-6927-4a53-adf0-134dea6f3de3"
-            },
-            "target": {
-              "cell": "7df1afc9-b245-4b26-acf0-413e25ee3e9d"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-06"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-06",
-              "description": "Lectura del hash BCrypt (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "28ad2134-3527-482e-b564-27170b99da12",
-            "shape": "flow",
-            "source": {
-              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
-            },
-            "target": {
-              "cell": "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-07"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-07",
-              "description": "Consulta de bloques y casilleros (BAJA)",
-              "outOfScope": false,
-              "isEncrypted": false,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "4e3332b7-5007-408b-87d0-516de814dd15",
-            "shape": "flow",
-            "source": {
-              "cell": "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e"
-            },
-            "target": {
-              "cell": "a904cc2b-dc64-416d-b714-7f182e0a3280"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-08"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-08",
-              "description": "Lectura del catalogo (BAJA)",
-              "outOfScope": false,
-              "isEncrypted": false,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "4c90ba57-4d0f-49e1-9c11-187f54f560f0",
-            "shape": "flow",
-            "source": {
-              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
-            },
-            "target": {
-              "cell": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-09"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-09",
-              "description": "POST de alquiler con startDate y endDate (MEDIA)",
-              "outOfScope": false,
-              "isEncrypted": false,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "35cc7fe4-2f89-4aef-912d-17dcfe5f5767",
-            "shape": "flow",
-            "source": {
-              "cell": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
-            },
-            "target": {
-              "cell": "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-10"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-10",
-              "description": "Creacion de PreRental + PESSIMISTIC_WRITE (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "f10c7d35-3ef6-48e7-a621-b3142c4ba56a",
-            "shape": "flow",
-            "source": {
-              "cell": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
-            },
-            "target": {
-              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-11"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-11",
-              "description": "Vista checkout con token, storeId, clientTxId y amount (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "f27702f2-51e5-4317-a5bf-200e8f2e0cc7",
-            "shape": "flow",
-            "source": {
-              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
-            },
-            "target": {
-              "cell": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-12"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-12",
-              "description": "Pago directo del estudiante a PayPhone (FUERA DE ALCANCE)",
-              "outOfScope": true,
-              "isEncrypted": false,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "179be8f5-3cc2-438c-9311-1fae7847511e",
-            "shape": "flow",
-            "source": {
-              "cell": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4"
-            },
-            "target": {
-              "cell": "3a60c106-0a4d-45bc-aef8-a2eef064ebed"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-13"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-13",
-              "description": "Redireccion al webhook con id y clientTransactionId (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "ee296c89-9adb-4724-bbab-0467b1dab375",
-            "shape": "flow",
-            "source": {
-              "cell": "3a60c106-0a4d-45bc-aef8-a2eef064ebed"
-            },
-            "target": {
-              "cell": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-14"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-14",
-              "description": "POST de confirmacion con Bearer token a PayPhone (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "03a7153e-e24d-4a20-ba16-6f1686742808",
-            "shape": "flow",
-            "source": {
-              "cell": "3a60c106-0a4d-45bc-aef8-a2eef064ebed"
-            },
-            "target": {
-              "cell": "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-15"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-15",
-              "description": "Persistencia del resultado del pago (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "cb7962c1-285b-40e3-9156-7ecde3fd8dfb",
-            "shape": "flow",
-            "source": {
-              "cell": "d82f21e9-9ca0-40ab-a319-a0139238a1c2"
-            },
-            "target": {
-              "cell": "ed58ac68-6077-49d1-981b-1e287b707a14"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-16"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-16",
-              "description": "Operaciones administrativas con rol ADMIN (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "2fa9d71b-2b51-4aff-8928-ae857d4b32d7",
-            "shape": "flow",
-            "source": {
-              "cell": "eddd8907-e875-4e2d-ab9b-c47976b60e53"
-            },
-            "target": {
-              "cell": "d82f21e9-9ca0-40ab-a319-a0139238a1c2"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-17"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-17",
-              "description": "Descarga del XLSX con datos de alquileres (MEDIA-ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "1af8ce2b-f5b1-4d82-9f6f-f17e03556b84",
-            "shape": "flow",
-            "source": {
-              "cell": "bb5984ee-320a-4e39-84ee-b850023bd637"
-            },
-            "target": {
-              "cell": "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-18"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-18",
-              "description": "Limpieza de pre-alquileres y cierre de vencidos (MEDIA)",
-              "outOfScope": false,
-              "isEncrypted": false,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "24ad6fcf-e2aa-461a-a3ec-b318ea17e039",
-            "shape": "flow",
-            "source": {
-              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
-            },
-            "target": {
-              "cell": "99d9d253-beb4-4756-953f-586d6e888ecc"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-19"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-19",
-              "description": "Lectura de secretos al arranque (ALTA)",
-              "outOfScope": false,
-              "isEncrypted": true,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
-          },
-          {
-            "id": "cbb75a69-2346-4d5b-9a5b-6682a1ef01cc",
-            "shape": "flow",
-            "source": {
-              "cell": "2fcf7509-303f-4c97-b81c-723885c906f7"
-            },
-            "target": {
-              "cell": "dbc5340d-6927-4a53-adf0-134dea6f3de3"
-            },
-            "labels": [
-              {
-                "attrs": {
-                  "label": {
-                    "text": "F-20"
-                  }
-                }
-              }
-            ],
-            "data": {
-              "type": "tm.Flow",
-              "name": "F-20",
-              "description": "Trafico hostil hacia los puntos de entrada publicos",
-              "outOfScope": false,
-              "isEncrypted": false,
-              "isPublicNetwork": true,
-              "protocol": "HTTPS",
-              "threats": []
-            },
-            "zIndex": 5
+            }
           }
         ]
       }
