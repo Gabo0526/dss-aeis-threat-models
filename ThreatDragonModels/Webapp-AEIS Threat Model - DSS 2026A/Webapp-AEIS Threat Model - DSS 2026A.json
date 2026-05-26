@@ -1,9 +1,10 @@
 {
-  "version": "2.6.2",
+  "version": "2.4",
   "summary": {
     "title": "Webapp-AEIS Threat Model - DSS 2026A",
-    "owner": "\tGabriel Vásconez (Gabo0526)",
-    "description": "Sistema web monolítico Spring Boot 3.5 / Java 17 para la gestión y alquiler de casilleros\nde la AEIS-EPN. Integra autenticación con verificación por correo, control de acceso\nbasado en roles (USER/ADMIN), pagos a través de la pasarela PayPhone con confirmación\nvía webhook, y persistencia en MySQL. Despliegue en Azure App Service con pipeline\nDevSecOps en Azure Pipelines (SonarCloud + JaCoCo). Este modelo cubre los flujos de\nautenticación, alquiler, pago y administración del sistema, así como las fronteras de\nconfianza entre Internet, la zona de aplicación, la base de datos y los servicios\nexternos PayPhone y SMTP.",
+    "owner": "Gabriel Vasconez (Gabo0526)",
+    "reviewer": "Gabriela Lorena Suntaxi Ona",
+    "description": "Sistema web monolitico Spring Boot 3.5 / Java 17 para la gestion y alquiler de casilleros de la AEIS-EPN. Cubre flujos de autenticacion, alquiler, pago via PayPhone y administracion.",
     "id": 0
   },
   "detail": {
@@ -12,13 +13,13 @@
         "name": "Dylan Granizo"
       },
       {
-        "name": "René Guzmán"
+        "name": "Rene Guzman"
       },
       {
         "name": "Gianfranco Pupiales"
       },
       {
-        "name": "Gabriel Vásconez"
+        "name": "Gabriel Vasconez"
       },
       {
         "name": "Jeremy Yugsi"
@@ -29,14 +30,1657 @@
         "id": 0,
         "title": "AEIS - DFD Nivel 1",
         "diagramType": "STRIDE",
-        "placeholder": "New STRIDE diagram description",
+        "placeholder": "New diagram",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
-        "version": "2.6.2",
-        "cells": []
+        "version": "2.0.0",
+        "cells": [
+          {
+            "id": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c",
+            "shape": "actor",
+            "position": {
+              "x": 60,
+              "y": 300
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-01 Estudiante"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-01 Estudiante",
+              "description": "EE-01 Estudiante",
+              "outOfScope": false,
+              "threats": [],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "e2f00470-389a-482e-8b46-b699acb653f1",
+            "shape": "actor",
+            "position": {
+              "x": 60,
+              "y": 560
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-02 Administrador"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-02 Administrador",
+              "description": "EE-02 Administrador",
+              "outOfScope": false,
+              "threats": [],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "ebcad374-8c8d-4e9b-b910-94da3d69f26b",
+            "shape": "actor",
+            "position": {
+              "x": 1080,
+              "y": 300
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-03 PayPhone API"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-03 PayPhone API",
+              "description": "EE-03 PayPhone API",
+              "outOfScope": true,
+              "threats": [],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "77a2c3a5-ac38-498f-84bd-1b0a46386a54",
+            "shape": "actor",
+            "position": {
+              "x": 1080,
+              "y": 120
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-04 SMTP Gmail"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-04 SMTP Gmail",
+              "description": "EE-04 SMTP Gmail",
+              "outOfScope": true,
+              "threats": [
+                {
+                  "id": "369d1793-da41-4aa3-b7f7-cb5d886b965f",
+                  "number": 21,
+                  "title": "T-21: Token de verificacion en query string",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "fbc04795-c553-480d-8400-374baeb5f5da",
+            "shape": "actor",
+            "position": {
+              "x": 60,
+              "y": 720
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-05 Atacante"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-05 Atacante",
+              "description": "EE-05 Atacante",
+              "outOfScope": false,
+              "threats": [],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "eb604220-ddea-4339-ac6d-f5545f097139",
+            "shape": "process",
+            "position": {
+              "x": 320,
+              "y": 180
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-01 Registro y Verificacion"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-01 Registro y Verificacion",
+              "description": "P-01 Registro y Verificacion",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "b7fabd22-44b3-45d6-bdf7-5b2efd49d883",
+                  "number": 1,
+                  "title": "T-01: Registro masivo con cedulas falsificadas",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "7eb1fc12-ecb7-41c9-a370-837d8cbe0ac4",
+                  "number": 2,
+                  "title": "T-02: Enumeracion de cuentas por mensaje de error",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "73599520-14db-490f-b97d-826895140fa5",
+            "shape": "process",
+            "position": {
+              "x": 320,
+              "y": 300
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-02 Login"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-02 Login",
+              "description": "P-02 Login",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "47dbc880-e5c0-4564-a252-38489fb66d76",
+                  "number": 4,
+                  "title": "T-04: Credential stuffing en login",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "7a88a019-574c-4769-973a-ef3de5090576",
+                  "number": 5,
+                  "title": "T-05: Enumeracion via mensajes de error diferenciados",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "d9f64730-31c2-41c3-8f89-15976d9855dd",
+                  "number": 6,
+                  "title": "T-06: Falta de auditoria de logins",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "cf68b28b-8a40-4e53-b408-b011fc7e052f",
+            "shape": "process",
+            "position": {
+              "x": 320,
+              "y": 420
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-03 Ver Casilleros"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-03 Ver Casilleros",
+              "description": "P-03 Ver Casilleros",
+              "outOfScope": false,
+              "threats": [],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "57045cb0-2bf2-4d56-afcd-a815c7a3163c",
+            "shape": "process",
+            "position": {
+              "x": 560,
+              "y": 320
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-04 Pre-Alquiler"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-04 Pre-Alquiler",
+              "description": "P-04 Pre-Alquiler",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "1a6c5900-9da9-415e-96e0-cdcae1c455d7",
+                  "number": 7,
+                  "title": "T-07: Multiples alquileres por usuario",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "76c26b15-37a1-4f27-9b43-9c032371081a",
+                  "number": 8,
+                  "title": "T-08: DoS por agotamiento de casilleros",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "3d16f901-0023-425b-aa1e-bc77f1ef1389",
+                  "number": 9,
+                  "title": "T-09: Token PayPhone publico expuesto en HTML",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "08696a76-a33e-424c-982e-bb3f66743fa3",
+                  "number": 25,
+                  "title": "T-25: Repudiacion del pre-alquiler por falta de auditoria",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": true,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "251690e1-10e2-4a92-a2d4-646c1a14dec6",
+            "shape": "process",
+            "position": {
+              "x": 820,
+              "y": 320
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-05 Webhook PayPhone"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-05 Webhook PayPhone",
+              "description": "P-05 Webhook PayPhone",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "a5ebbb44-7ce2-4c16-acd2-b796c43dc67f",
+                  "number": 10,
+                  "title": "T-10: Webhook publico sin autenticacion fuerte",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "9c8eb485-cf4e-4c1d-8e74-b5b3739b3faa",
+                  "number": 11,
+                  "title": "T-11: isPaid permisivo no compara amount",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "24f40545-e1de-4d6c-a2ae-aa9cce3e6c3f",
+                  "number": 12,
+                  "title": "T-12: Sin evidencia criptografica de confirmacion",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "db8433d4-c144-4855-bf5a-f4faaf3e4e34",
+                  "number": 13,
+                  "title": "T-13: Exposicion del Bearer token de PayPhone en transito",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": true,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "1f7480cd-f2f1-43dc-8f82-dedcc4c41d18",
+            "shape": "process",
+            "position": {
+              "x": 320,
+              "y": 640
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-06 Gestion Periodos"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-06 Gestion Periodos",
+              "description": "P-06 Gestion Periodos",
+              "outOfScope": false,
+              "threats": [],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Admin"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "da9ad753-feff-4b2a-bab0-5b4b28c974dd",
+            "shape": "process",
+            "position": {
+              "x": 480,
+              "y": 640
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-07 Gestion Bloques-Casilleros"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-07 Gestion Bloques-Casilleros",
+              "description": "P-07 Gestion Bloques-Casilleros",
+              "outOfScope": false,
+              "threats": [],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Admin"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "70de4d8e-ebd6-4d4f-8f98-9ca701c73fef",
+            "shape": "process",
+            "position": {
+              "x": 640,
+              "y": 640
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-08 Gestion Alquileres"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-08 Gestion Alquileres",
+              "description": "P-08 Gestion Alquileres",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "67c2ac3b-eec0-473e-a35e-398e1e2a3119",
+                  "number": 16,
+                  "title": "T-16: IDOR en alquiler excepcional",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Admin"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "9daa92a1-d57e-41d6-a2bb-c325c675e313",
+            "shape": "process",
+            "position": {
+              "x": 800,
+              "y": 640
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-09 Excel Export"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-09 Excel Export",
+              "description": "P-09 Excel Export",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "141b0c47-4015-40f1-b378-3a0453b3281a",
+                  "number": 17,
+                  "title": "T-17: Exfiltracion via payload arbitrario",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "c83c83d7-342a-491f-94e4-c254d02d750c",
+                  "number": 18,
+                  "title": "T-18: CSV o Formula Injection",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Admin"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "a8329380-03ae-4049-bfd5-836893201b48",
+            "shape": "process",
+            "position": {
+              "x": 560,
+              "y": 500
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "P-10 Schedulers"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-10 Schedulers",
+              "description": "P-10 Schedulers",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "0bab8a81-0a03-4f47-851b-1c04947a134f",
+                  "number": 22,
+                  "title": "T-22: Carga sostenida en BD por schedulers",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "41682835-5627-4b38-978d-8d7a45f5f786",
+            "shape": "store",
+            "position": {
+              "x": 560,
+              "y": 100
+            },
+            "size": {
+              "width": 160,
+              "height": 60
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-01 BD app_user"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-01 BD app_user",
+              "description": "DS-01 BD app_user",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "1bb166d1-ec22-42af-99dc-ca1b0a6efa03",
+                  "number": 14,
+                  "title": "T-14: SQLi via filtros administrativos",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "102aafec-4d3c-46bd-a359-42f186e65ab1",
+                  "number": 15,
+                  "title": "T-15: Exposicion de esquema y queries por show-sql y ddl-auto",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "isALog": false,
+              "isEncrypted": false,
+              "storesCredentials": true
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "815ce685-6133-4c21-a0e7-6e5b38398098",
+            "shape": "store",
+            "position": {
+              "x": 720,
+              "y": 100
+            },
+            "size": {
+              "width": 160,
+              "height": 60
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-02 BD verification_token"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-02 BD verification_token",
+              "description": "DS-02 BD verification_token",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "ed2e485c-8f5e-4d74-a6c5-f31cc1c02400",
+                  "number": 3,
+                  "title": "T-03: Reutilizacion de token de verificacion",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "isALog": false,
+              "isEncrypted": false,
+              "storesCredentials": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "4c3fc86d-4e90-4d05-9767-4c59db53ce2e",
+            "shape": "store",
+            "position": {
+              "x": 880,
+              "y": 100
+            },
+            "size": {
+              "width": 160,
+              "height": 60
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-03 BD Lockers-Periods"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-03 BD Lockers-Periods",
+              "description": "DS-03 BD Lockers-Periods",
+              "outOfScope": false,
+              "threats": [],
+              "isALog": false,
+              "isEncrypted": false,
+              "storesCredentials": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "71794537-0352-4435-b8b0-e4e9e0db5670",
+            "shape": "store",
+            "position": {
+              "x": 880,
+              "y": 500
+            },
+            "size": {
+              "width": 160,
+              "height": 60
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-04 BD Rentals"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-04 BD Rentals",
+              "description": "DS-04 BD Rentals",
+              "outOfScope": false,
+              "threats": [],
+              "isALog": false,
+              "isEncrypted": false,
+              "storesCredentials": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "2995ccad-3863-4220-a1f2-7c84e61e198f",
+            "shape": "store",
+            "position": {
+              "x": 60,
+              "y": 640
+            },
+            "size": {
+              "width": 160,
+              "height": 60
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-05 Secretos"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-05 Secretos",
+              "description": "DS-05 Secretos",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "572fbff4-0b77-4528-8753-3f7ccff40279",
+                  "number": 23,
+                  "title": "T-23: Secretos reales en archivo .env del workspace",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "isALog": false,
+              "isEncrypted": true,
+              "storesCredentials": true
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "3b5e2189-0b55-4ce1-87cf-3f1a0fcf8c07",
+            "shape": "store",
+            "position": {
+              "x": 60,
+              "y": 100
+            },
+            "size": {
+              "width": 160,
+              "height": 60
+            },
+            "attrs": {
+              "label": {
+                "text": "DS-06 Logs"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "DS-06 Logs",
+              "description": "DS-06 Logs",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "8d40ae87-4113-4ef5-a17b-47e9fa4e926d",
+                  "number": 24,
+                  "title": "T-24: Trazabilidad reconstruible via logs",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "isALog": true,
+              "isEncrypted": false,
+              "storesCredentials": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "994a2a35-d441-4e6f-a230-53c436e3889c",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 150,
+              "y": 40
+            },
+            "size": {
+              "width": 5,
+              "height": 700
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-01 Internet vs Capa Web"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-01 Internet vs Capa Web",
+              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "59be6b9e-a1bf-4660-81f7-95db5df23389",
+                  "number": 20,
+                  "title": "T-20: CSRF y SameSite no verificados",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "41029f53-2110-469b-8ca4-53005679c1b2",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 270,
+              "y": 250
+            },
+            "size": {
+              "width": 300,
+              "height": 250
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-02 Capa Web vs Servicios"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-02 Capa Web vs Servicios",
+              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "914d4cfe-9333-4e2e-9440-1dfb1efee14a",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 270,
+              "y": 600
+            },
+            "size": {
+              "width": 600,
+              "height": 90
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-03 Zona Usuario vs Admin"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-03 Zona Usuario vs Admin",
+              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "d6f54dca-e25e-45f2-9ceb-839bf527e3f5",
+                  "number": 19,
+                  "title": "T-19: Privilegios todo o nada por falta del rol Registrador",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "3d5d5574-e72b-4fbd-a532-89c0e662b820",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 530,
+              "y": 60
+            },
+            "size": {
+              "width": 480,
+              "height": 480
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-04 App vs Base de Datos"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-04 App vs Base de Datos",
+              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "5193aac3-0e36-4acc-adac-2e7d87f18132",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 1020,
+              "y": 250
+            },
+            "size": {
+              "width": 5,
+              "height": 200
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-05 App vs PayPhone"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-05 App vs PayPhone",
+              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "b731303a-ebac-4889-aefd-4131e53ed04d",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 250,
+              "y": 80
+            },
+            "size": {
+              "width": 850,
+              "height": 5
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-06 App vs SMTP"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-06 App vs SMTP",
+              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "901f4c6f-a038-4e2b-a4b0-7f3b0b9ba752",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 40,
+              "y": 620
+            },
+            "size": {
+              "width": 250,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "TB-07 App vs Almacen Secretos"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB-07 App vs Almacen Secretos",
+              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "outOfScope": false,
+              "threats": []
+            },
+            "zIndex": 0
+          },
+          {
+            "id": "1d9b1cf1-bb39-46bc-9bc1-9afcb2e37989",
+            "shape": "flow",
+            "source": {
+              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+            },
+            "target": {
+              "cell": "eb604220-ddea-4339-ac6d-f5545f097139"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-01"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-01",
+              "description": "Datos de registro: cedula, correo, password, codigo unico, facultad (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "da27aaac-91f4-4a84-bd37-f79f27e6f6ea",
+            "shape": "flow",
+            "source": {
+              "cell": "eb604220-ddea-4339-ac6d-f5545f097139"
+            },
+            "target": {
+              "cell": "41682835-5627-4b38-978d-8d7a45f5f786"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-02"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-02",
+              "description": "Persistir user + hash BCrypt (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "c280e316-e99f-4ca4-bc8f-c0b43c766976",
+            "shape": "flow",
+            "source": {
+              "cell": "eb604220-ddea-4339-ac6d-f5545f097139"
+            },
+            "target": {
+              "cell": "77a2c3a5-ac38-498f-84bd-1b0a46386a54"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-03"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-03",
+              "description": "Enviar correo SMTP con enlace y token UUID (MEDIA-ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "f3bc50ed-f7f2-428e-941b-a65faae69a17",
+            "shape": "flow",
+            "source": {
+              "cell": "77a2c3a5-ac38-498f-84bd-1b0a46386a54"
+            },
+            "target": {
+              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-04"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-04",
+              "description": "Correo de verificacion entregado al estudiante (MEDIA-ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "b3c4aeeb-70c8-4a17-b220-02f9c117503d",
+            "shape": "flow",
+            "source": {
+              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+            },
+            "target": {
+              "cell": "73599520-14db-490f-b97d-826895140fa5"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-05"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-05",
+              "description": "Credenciales username y password sobre HTTPS (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "46e7cb74-3382-464e-b750-e8a6351b636b",
+            "shape": "flow",
+            "source": {
+              "cell": "73599520-14db-490f-b97d-826895140fa5"
+            },
+            "target": {
+              "cell": "41682835-5627-4b38-978d-8d7a45f5f786"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-06"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-06",
+              "description": "Lectura del hash BCrypt (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "a100e4f6-abb1-40c9-9947-b2589138f5be",
+            "shape": "flow",
+            "source": {
+              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+            },
+            "target": {
+              "cell": "cf68b28b-8a40-4e53-b408-b011fc7e052f"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-07"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-07",
+              "description": "Consulta de bloques y casilleros (BAJA)",
+              "outOfScope": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "73c5b10f-35d2-47b0-8ffe-920811c2daad",
+            "shape": "flow",
+            "source": {
+              "cell": "cf68b28b-8a40-4e53-b408-b011fc7e052f"
+            },
+            "target": {
+              "cell": "4c3fc86d-4e90-4d05-9767-4c59db53ce2e"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-08"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-08",
+              "description": "Lectura del catalogo (BAJA)",
+              "outOfScope": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "60c2efc0-f811-40d1-8a6b-d46b0c979d4d",
+            "shape": "flow",
+            "source": {
+              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+            },
+            "target": {
+              "cell": "57045cb0-2bf2-4d56-afcd-a815c7a3163c"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-09"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-09",
+              "description": "POST de alquiler con startDate y endDate (MEDIA)",
+              "outOfScope": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "b851387b-e75f-42c1-b52a-fc4847ed2e78",
+            "shape": "flow",
+            "source": {
+              "cell": "57045cb0-2bf2-4d56-afcd-a815c7a3163c"
+            },
+            "target": {
+              "cell": "71794537-0352-4435-b8b0-e4e9e0db5670"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-10"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-10",
+              "description": "Creacion de PreRental + PESSIMISTIC_WRITE (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "88324318-fbef-48f0-8bd4-2e3593a2900d",
+            "shape": "flow",
+            "source": {
+              "cell": "57045cb0-2bf2-4d56-afcd-a815c7a3163c"
+            },
+            "target": {
+              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-11"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-11",
+              "description": "Vista checkout con token, storeId, clientTxId y amount (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "a3ee9e7e-05ee-42c8-987c-76a6462ecd61",
+            "shape": "flow",
+            "source": {
+              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+            },
+            "target": {
+              "cell": "ebcad374-8c8d-4e9b-b910-94da3d69f26b"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-12"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-12",
+              "description": "Pago directo del estudiante a PayPhone (FUERA DE ALCANCE)",
+              "outOfScope": true,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "a83659e4-7163-42ca-b0d3-7f56c5aa1def",
+            "shape": "flow",
+            "source": {
+              "cell": "ebcad374-8c8d-4e9b-b910-94da3d69f26b"
+            },
+            "target": {
+              "cell": "251690e1-10e2-4a92-a2d4-646c1a14dec6"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-13"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-13",
+              "description": "Redireccion al webhook con id y clientTransactionId (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "85cb5879-077d-4249-a747-b5966c924d67",
+            "shape": "flow",
+            "source": {
+              "cell": "251690e1-10e2-4a92-a2d4-646c1a14dec6"
+            },
+            "target": {
+              "cell": "ebcad374-8c8d-4e9b-b910-94da3d69f26b"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-14"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-14",
+              "description": "POST de confirmacion con Bearer token a PayPhone (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "3b318225-1a6c-42be-9d4f-b9ad87645ddc",
+            "shape": "flow",
+            "source": {
+              "cell": "251690e1-10e2-4a92-a2d4-646c1a14dec6"
+            },
+            "target": {
+              "cell": "71794537-0352-4435-b8b0-e4e9e0db5670"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-15"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-15",
+              "description": "Persistencia del resultado del pago (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "ebf0e0dc-7932-4e09-b13a-023ca20d360a",
+            "shape": "flow",
+            "source": {
+              "cell": "e2f00470-389a-482e-8b46-b699acb653f1"
+            },
+            "target": {
+              "cell": "70de4d8e-ebd6-4d4f-8f98-9ca701c73fef"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-16"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-16",
+              "description": "Operaciones administrativas con rol ADMIN (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "f37e0022-ad3c-44bb-b452-2967f1df8e30",
+            "shape": "flow",
+            "source": {
+              "cell": "9daa92a1-d57e-41d6-a2bb-c325c675e313"
+            },
+            "target": {
+              "cell": "e2f00470-389a-482e-8b46-b699acb653f1"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-17"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-17",
+              "description": "Descarga del XLSX con datos de alquileres (MEDIA-ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "eab3089c-8075-4c08-b326-bc57f1d5b4a9",
+            "shape": "flow",
+            "source": {
+              "cell": "a8329380-03ae-4049-bfd5-836893201b48"
+            },
+            "target": {
+              "cell": "71794537-0352-4435-b8b0-e4e9e0db5670"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-18"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-18",
+              "description": "Limpieza de pre-alquileres y cierre de vencidos (MEDIA)",
+              "outOfScope": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "e00a71d7-d01f-491b-b8fa-7e05825d7158",
+            "shape": "flow",
+            "source": {
+              "cell": "eb604220-ddea-4339-ac6d-f5545f097139"
+            },
+            "target": {
+              "cell": "2995ccad-3863-4220-a1f2-7c84e61e198f"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-19"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-19",
+              "description": "Lectura de secretos al arranque (ALTA)",
+              "outOfScope": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "id": "b0e6f7ec-658d-4352-a906-edd85490593a",
+            "shape": "flow",
+            "source": {
+              "cell": "fbc04795-c553-480d-8400-374baeb5f5da"
+            },
+            "target": {
+              "cell": "73599520-14db-490f-b97d-826895140fa5"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "F-20"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-20",
+              "description": "Trafico hostil hacia los puntos de entrada publicos",
+              "outOfScope": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "zIndex": 5
+          }
+        ]
       }
     ],
     "diagramTop": 1,
-    "reviewer": "Gabriela Lorena Suntaxi Oña (docente DSS)",
-    "threatTop": 0
+    "reviewer": "Gabriela Lorena Suntaxi Ona",
+    "threatTop": 25
   }
 }
