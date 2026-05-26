@@ -24,8 +24,18 @@
         "name": "Jeremy Yugsi"
       }
     ],
-    "diagrams": [],
-    "diagramTop": 0,
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "AEIS - DFD Nivel 1",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": []
+      }
+    ],
+    "diagramTop": 1,
     "reviewer": "Gabriela Lorena Suntaxi Oña (docente DSS)",
     "threatTop": 0
   }
