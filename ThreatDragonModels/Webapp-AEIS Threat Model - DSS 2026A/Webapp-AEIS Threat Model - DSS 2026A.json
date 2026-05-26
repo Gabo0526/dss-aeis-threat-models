@@ -35,14 +35,14 @@
         "version": "2.0.0",
         "cells": [
           {
-            "id": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c",
+            "id": "59798db6-5f22-418f-9714-5861f89fecf5",
             "shape": "actor",
             "position": {
               "x": 60,
-              "y": 300
+              "y": 400
             },
             "size": {
-              "width": 160,
+              "width": 180,
               "height": 80
             },
             "attrs": {
@@ -61,14 +61,14 @@
             "zIndex": 10
           },
           {
-            "id": "e2f00470-389a-482e-8b46-b699acb653f1",
+            "id": "d82f21e9-9ca0-40ab-a319-a0139238a1c2",
             "shape": "actor",
             "position": {
               "x": 60,
-              "y": 560
+              "y": 720
             },
             "size": {
-              "width": 160,
+              "width": 180,
               "height": 80
             },
             "attrs": {
@@ -87,78 +87,14 @@
             "zIndex": 10
           },
           {
-            "id": "ebcad374-8c8d-4e9b-b910-94da3d69f26b",
-            "shape": "actor",
-            "position": {
-              "x": 1080,
-              "y": 300
-            },
-            "size": {
-              "width": 160,
-              "height": 80
-            },
-            "attrs": {
-              "label": {
-                "text": "EE-03 PayPhone API"
-              }
-            },
-            "data": {
-              "type": "tm.Actor",
-              "name": "EE-03 PayPhone API",
-              "description": "EE-03 PayPhone API",
-              "outOfScope": true,
-              "threats": [],
-              "providesAuthentication": false
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "77a2c3a5-ac38-498f-84bd-1b0a46386a54",
-            "shape": "actor",
-            "position": {
-              "x": 1080,
-              "y": 120
-            },
-            "size": {
-              "width": 160,
-              "height": 80
-            },
-            "attrs": {
-              "label": {
-                "text": "EE-04 SMTP Gmail"
-              }
-            },
-            "data": {
-              "type": "tm.Actor",
-              "name": "EE-04 SMTP Gmail",
-              "description": "EE-04 SMTP Gmail",
-              "outOfScope": true,
-              "threats": [
-                {
-                  "id": "369d1793-da41-4aa3-b7f7-cb5d886b965f",
-                  "number": 21,
-                  "title": "T-21: Token de verificacion en query string",
-                  "status": "Open",
-                  "severity": "Low",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ],
-              "providesAuthentication": false
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "fbc04795-c553-480d-8400-374baeb5f5da",
+            "id": "2fcf7509-303f-4c97-b81c-723885c906f7",
             "shape": "actor",
             "position": {
               "x": 60,
-              "y": 720
+              "y": 1100
             },
             "size": {
-              "width": 160,
+              "width": 180,
               "height": 80
             },
             "attrs": {
@@ -177,15 +113,79 @@
             "zIndex": 10
           },
           {
-            "id": "eb604220-ddea-4339-ac6d-f5545f097139",
-            "shape": "process",
+            "id": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4",
+            "shape": "actor",
             "position": {
-              "x": 320,
-              "y": 180
+              "x": 1440,
+              "y": 450
             },
             "size": {
-              "width": 140,
+              "width": 180,
               "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-03 PayPhone API"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-03 PayPhone API",
+              "description": "EE-03 PayPhone API",
+              "outOfScope": true,
+              "threats": [],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "a98c442b-62c9-4618-9c46-3979777f1be4",
+            "shape": "actor",
+            "position": {
+              "x": 1440,
+              "y": 160
+            },
+            "size": {
+              "width": 180,
+              "height": 80
+            },
+            "attrs": {
+              "label": {
+                "text": "EE-04 SMTP Gmail"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE-04 SMTP Gmail",
+              "description": "EE-04 SMTP Gmail",
+              "outOfScope": true,
+              "threats": [
+                {
+                  "id": "b079f65f-e311-4dfb-a33a-af077918dd04",
+                  "number": 21,
+                  "title": "T-21: Token de verificacion en query string",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "providesAuthentication": false
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "62be0819-f331-45f6-b0ef-87d2b3763bef",
+            "shape": "process",
+            "position": {
+              "x": 380,
+              "y": 220
+            },
+            "size": {
+              "width": 180,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -199,7 +199,7 @@
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "b7fabd22-44b3-45d6-bdf7-5b2efd49d883",
+                  "id": "e89d5044-9585-4ffb-9a40-cc6bbd2bc442",
                   "number": 1,
                   "title": "T-01: Registro masivo con cedulas falsificadas",
                   "status": "Open",
@@ -210,7 +210,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "7eb1fc12-ecb7-41c9-a370-837d8cbe0ac4",
+                  "id": "f5c622ab-e2bd-4ad2-bc3e-b4c5cc4dab1e",
                   "number": 2,
                   "title": "T-02: Enumeracion de cuentas por mensaje de error",
                   "status": "Open",
@@ -228,15 +228,15 @@
             "zIndex": 10
           },
           {
-            "id": "73599520-14db-490f-b97d-826895140fa5",
+            "id": "dbc5340d-6927-4a53-adf0-134dea6f3de3",
             "shape": "process",
             "position": {
-              "x": 320,
-              "y": 300
+              "x": 380,
+              "y": 400
             },
             "size": {
-              "width": 140,
-              "height": 80
+              "width": 180,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -250,7 +250,7 @@
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "47dbc880-e5c0-4564-a252-38489fb66d76",
+                  "id": "34a9f055-24d0-4dde-b93b-3fd0b85ed034",
                   "number": 4,
                   "title": "T-04: Credential stuffing en login",
                   "status": "Open",
@@ -261,7 +261,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "7a88a019-574c-4769-973a-ef3de5090576",
+                  "id": "5766415b-16c7-4995-8461-df7d35d8fc4a",
                   "number": 5,
                   "title": "T-05: Enumeracion via mensajes de error diferenciados",
                   "status": "Open",
@@ -272,7 +272,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "d9f64730-31c2-41c3-8f89-15976d9855dd",
+                  "id": "ff238ab7-209f-45d2-8c8b-aed954426b49",
                   "number": 6,
                   "title": "T-06: Falta de auditoria de logins",
                   "status": "Open",
@@ -290,15 +290,15 @@
             "zIndex": 10
           },
           {
-            "id": "cf68b28b-8a40-4e53-b408-b011fc7e052f",
+            "id": "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e",
             "shape": "process",
             "position": {
-              "x": 320,
-              "y": 420
+              "x": 380,
+              "y": 580
             },
             "size": {
-              "width": 140,
-              "height": 80
+              "width": 180,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -318,15 +318,15 @@
             "zIndex": 10
           },
           {
-            "id": "57045cb0-2bf2-4d56-afcd-a815c7a3163c",
+            "id": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4",
             "shape": "process",
             "position": {
-              "x": 560,
-              "y": 320
+              "x": 720,
+              "y": 400
             },
             "size": {
-              "width": 140,
-              "height": 80
+              "width": 180,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -340,7 +340,7 @@
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "1a6c5900-9da9-415e-96e0-cdcae1c455d7",
+                  "id": "305e0bde-6ee5-44ec-a350-9a6ba4e7c45b",
                   "number": 7,
                   "title": "T-07: Multiples alquileres por usuario",
                   "status": "Open",
@@ -351,7 +351,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "76c26b15-37a1-4f27-9b43-9c032371081a",
+                  "id": "e052831a-7fa7-4021-baae-d8d3a7447c45",
                   "number": 8,
                   "title": "T-08: DoS por agotamiento de casilleros",
                   "status": "Open",
@@ -362,7 +362,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "3d16f901-0023-425b-aa1e-bc77f1ef1389",
+                  "id": "71d684ab-2ee1-4285-bdbf-8aa6858761c7",
                   "number": 9,
                   "title": "T-09: Token PayPhone publico expuesto en HTML",
                   "status": "Open",
@@ -373,7 +373,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "08696a76-a33e-424c-982e-bb3f66743fa3",
+                  "id": "5a579bac-36e7-4349-bc2b-aaa4e4e67680",
                   "number": 25,
                   "title": "T-25: Repudiacion del pre-alquiler por falta de auditoria",
                   "status": "Open",
@@ -391,15 +391,15 @@
             "zIndex": 10
           },
           {
-            "id": "251690e1-10e2-4a92-a2d4-646c1a14dec6",
+            "id": "3a60c106-0a4d-45bc-aef8-a2eef064ebed",
             "shape": "process",
             "position": {
-              "x": 820,
-              "y": 320
+              "x": 1060,
+              "y": 400
             },
             "size": {
-              "width": 140,
-              "height": 80
+              "width": 180,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -413,7 +413,7 @@
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "a5ebbb44-7ce2-4c16-acd2-b796c43dc67f",
+                  "id": "8d5f5f87-77cb-4171-84a2-55dbfdc45794",
                   "number": 10,
                   "title": "T-10: Webhook publico sin autenticacion fuerte",
                   "status": "Open",
@@ -424,7 +424,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "9c8eb485-cf4e-4c1d-8e74-b5b3739b3faa",
+                  "id": "e11d4ef0-f5af-4438-843d-37581136ca82",
                   "number": 11,
                   "title": "T-11: isPaid permisivo no compara amount",
                   "status": "Open",
@@ -435,7 +435,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "24f40545-e1de-4d6c-a2ae-aa9cce3e6c3f",
+                  "id": "13de7f67-5f33-4040-81f3-71c776a09ff8",
                   "number": 12,
                   "title": "T-12: Sin evidencia criptografica de confirmacion",
                   "status": "Open",
@@ -446,7 +446,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "db8433d4-c144-4855-bf5a-f4faaf3e4e34",
+                  "id": "1da02328-601f-4ae5-91cf-7a4377d0d9d4",
                   "number": 13,
                   "title": "T-13: Exposicion del Bearer token de PayPhone en transito",
                   "status": "Open",
@@ -464,15 +464,55 @@
             "zIndex": 10
           },
           {
-            "id": "1f7480cd-f2f1-43dc-8f82-dedcc4c41d18",
+            "id": "bb5984ee-320a-4e39-84ee-b850023bd637",
             "shape": "process",
             "position": {
-              "x": 320,
-              "y": 640
+              "x": 1060,
+              "y": 580
             },
             "size": {
-              "width": 140,
-              "height": 80
+              "width": 180,
+              "height": 90
+            },
+            "attrs": {
+              "label": {
+                "text": "P-10 Schedulers"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "P-10 Schedulers",
+              "description": "P-10 Schedulers",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "id": "355a2b08-c251-43b3-a496-0ac67e960e6a",
+                  "number": 22,
+                  "title": "T-22: Carga sostenida en BD por schedulers",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
+                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
+                  "modelType": "STRIDE"
+                }
+              ],
+              "handlesCardPayment": false,
+              "isWebApplication": true,
+              "privilegeLevel": "User"
+            },
+            "zIndex": 10
+          },
+          {
+            "id": "6c2085c1-de29-49a0-97bd-67fdea2c08e0",
+            "shape": "process",
+            "position": {
+              "x": 380,
+              "y": 880
+            },
+            "size": {
+              "width": 180,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -492,15 +532,15 @@
             "zIndex": 10
           },
           {
-            "id": "da9ad753-feff-4b2a-bab0-5b4b28c974dd",
+            "id": "ba43d964-30cc-4d7f-afdf-271d67d5aa65",
             "shape": "process",
             "position": {
-              "x": 480,
-              "y": 640
+              "x": 620,
+              "y": 880
             },
             "size": {
-              "width": 140,
-              "height": 80
+              "width": 180,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -520,15 +560,15 @@
             "zIndex": 10
           },
           {
-            "id": "70de4d8e-ebd6-4d4f-8f98-9ca701c73fef",
+            "id": "ed58ac68-6077-49d1-981b-1e287b707a14",
             "shape": "process",
             "position": {
-              "x": 640,
-              "y": 640
+              "x": 860,
+              "y": 880
             },
             "size": {
-              "width": 140,
-              "height": 80
+              "width": 180,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -542,7 +582,7 @@
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "67c2ac3b-eec0-473e-a35e-398e1e2a3119",
+                  "id": "87c7734d-d26e-4dfa-ad0f-ecc04acfca0a",
                   "number": 16,
                   "title": "T-16: IDOR en alquiler excepcional",
                   "status": "Open",
@@ -560,15 +600,15 @@
             "zIndex": 10
           },
           {
-            "id": "9daa92a1-d57e-41d6-a2bb-c325c675e313",
+            "id": "eddd8907-e875-4e2d-ab9b-c47976b60e53",
             "shape": "process",
             "position": {
-              "x": 800,
-              "y": 640
+              "x": 1100,
+              "y": 880
             },
             "size": {
-              "width": 140,
-              "height": 80
+              "width": 180,
+              "height": 90
             },
             "attrs": {
               "label": {
@@ -582,7 +622,7 @@
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "141b0c47-4015-40f1-b378-3a0453b3281a",
+                  "id": "d5a15649-32e2-41f1-9bf0-aea51fa53e2c",
                   "number": 17,
                   "title": "T-17: Exfiltracion via payload arbitrario",
                   "status": "Open",
@@ -593,7 +633,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "c83c83d7-342a-491f-94e4-c254d02d750c",
+                  "id": "22a60d25-380a-4ba1-9875-3f111d3add91",
                   "number": 18,
                   "title": "T-18: CSV o Formula Injection",
                   "status": "Open",
@@ -611,55 +651,55 @@
             "zIndex": 10
           },
           {
-            "id": "a8329380-03ae-4049-bfd5-836893201b48",
-            "shape": "process",
+            "id": "b0e8abce-af76-4f2c-b735-e5cb6e86e2f0",
+            "shape": "store",
             "position": {
-              "x": 560,
-              "y": 500
+              "x": 60,
+              "y": 40
             },
             "size": {
-              "width": 140,
-              "height": 80
+              "width": 200,
+              "height": 70
             },
             "attrs": {
               "label": {
-                "text": "P-10 Schedulers"
+                "text": "DS-06 Logs"
               }
             },
             "data": {
-              "type": "tm.Process",
-              "name": "P-10 Schedulers",
-              "description": "P-10 Schedulers",
+              "type": "tm.Store",
+              "name": "DS-06 Logs",
+              "description": "DS-06 Logs",
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "0bab8a81-0a03-4f47-851b-1c04947a134f",
-                  "number": 22,
-                  "title": "T-22: Carga sostenida en BD por schedulers",
+                  "id": "aacabea1-a8c9-4011-88aa-653e8775d8b3",
+                  "number": 24,
+                  "title": "T-24: Trazabilidad reconstruible via logs",
                   "status": "Open",
                   "severity": "Low",
-                  "type": "Denial of service",
+                  "type": "Information disclosure",
                   "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
                   "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
                   "modelType": "STRIDE"
                 }
               ],
-              "handlesCardPayment": false,
-              "isWebApplication": true,
-              "privilegeLevel": "User"
+              "isALog": true,
+              "isEncrypted": false,
+              "storesCredentials": false
             },
             "zIndex": 10
           },
           {
-            "id": "41682835-5627-4b38-978d-8d7a45f5f786",
+            "id": "7df1afc9-b245-4b26-acf0-413e25ee3e9d",
             "shape": "store",
             "position": {
-              "x": 560,
-              "y": 100
+              "x": 720,
+              "y": 40
             },
             "size": {
-              "width": 160,
-              "height": 60
+              "width": 200,
+              "height": 70
             },
             "attrs": {
               "label": {
@@ -673,7 +713,7 @@
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "1bb166d1-ec22-42af-99dc-ca1b0a6efa03",
+                  "id": "fe05b82d-4f4f-411b-9d97-21242a176973",
                   "number": 14,
                   "title": "T-14: SQLi via filtros administrativos",
                   "status": "Open",
@@ -684,7 +724,7 @@
                   "modelType": "STRIDE"
                 },
                 {
-                  "id": "102aafec-4d3c-46bd-a359-42f186e65ab1",
+                  "id": "9b72a4fc-d957-4927-bf59-aa7858092904",
                   "number": 15,
                   "title": "T-15: Exposicion de esquema y queries por show-sql y ddl-auto",
                   "status": "Open",
@@ -702,15 +742,15 @@
             "zIndex": 10
           },
           {
-            "id": "815ce685-6133-4c21-a0e7-6e5b38398098",
+            "id": "68d8b74d-bf9a-4442-98b1-059a4cdcbf5c",
             "shape": "store",
             "position": {
-              "x": 720,
-              "y": 100
+              "x": 940,
+              "y": 40
             },
             "size": {
-              "width": 160,
-              "height": 60
+              "width": 200,
+              "height": 70
             },
             "attrs": {
               "label": {
@@ -724,7 +764,7 @@
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "ed2e485c-8f5e-4d74-a6c5-f31cc1c02400",
+                  "id": "d8e22dd3-d23d-4687-bdfe-84d108dbbb66",
                   "number": 3,
                   "title": "T-03: Reutilizacion de token de verificacion",
                   "status": "Open",
@@ -742,15 +782,15 @@
             "zIndex": 10
           },
           {
-            "id": "4c3fc86d-4e90-4d05-9767-4c59db53ce2e",
+            "id": "a904cc2b-dc64-416d-b714-7f182e0a3280",
             "shape": "store",
             "position": {
-              "x": 880,
-              "y": 100
+              "x": 1160,
+              "y": 40
             },
             "size": {
-              "width": 160,
-              "height": 60
+              "width": 200,
+              "height": 70
             },
             "attrs": {
               "label": {
@@ -770,15 +810,15 @@
             "zIndex": 10
           },
           {
-            "id": "71794537-0352-4435-b8b0-e4e9e0db5670",
+            "id": "344806b5-b0ef-4865-89d4-49bf2bfb75d9",
             "shape": "store",
             "position": {
-              "x": 880,
-              "y": 500
+              "x": 1100,
+              "y": 720
             },
             "size": {
-              "width": 160,
-              "height": 60
+              "width": 200,
+              "height": 70
             },
             "attrs": {
               "label": {
@@ -798,15 +838,15 @@
             "zIndex": 10
           },
           {
-            "id": "2995ccad-3863-4220-a1f2-7c84e61e198f",
+            "id": "99d9d253-beb4-4756-953f-586d6e888ecc",
             "shape": "store",
             "position": {
-              "x": 60,
-              "y": 640
+              "x": 380,
+              "y": 1100
             },
             "size": {
-              "width": 160,
-              "height": 60
+              "width": 200,
+              "height": 70
             },
             "attrs": {
               "label": {
@@ -820,7 +860,7 @@
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "572fbff4-0b77-4528-8753-3f7ccff40279",
+                  "id": "30c6b87e-b3e1-44c9-b316-41f1cc158a2b",
                   "number": 23,
                   "title": "T-23: Secretos reales en archivo .env del workspace",
                   "status": "Open",
@@ -838,55 +878,15 @@
             "zIndex": 10
           },
           {
-            "id": "3b5e2189-0b55-4ce1-87cf-3f1a0fcf8c07",
-            "shape": "store",
-            "position": {
-              "x": 60,
-              "y": 100
-            },
-            "size": {
-              "width": 160,
-              "height": 60
-            },
-            "attrs": {
-              "label": {
-                "text": "DS-06 Logs"
-              }
-            },
-            "data": {
-              "type": "tm.Store",
-              "name": "DS-06 Logs",
-              "description": "DS-06 Logs",
-              "outOfScope": false,
-              "threats": [
-                {
-                  "id": "8d40ae87-4113-4ef5-a17b-47e9fa4e926d",
-                  "number": 24,
-                  "title": "T-24: Trazabilidad reconstruible via logs",
-                  "status": "Open",
-                  "severity": "Low",
-                  "type": "Information disclosure",
-                  "description": "Ver detalle completo en la matriz STRIDE 3.3.1 del documento principal.",
-                  "mitigation": "Ver control asociado en la Parte 4 del documento principal.",
-                  "modelType": "STRIDE"
-                }
-              ],
-              "isALog": true,
-              "isEncrypted": false,
-              "storesCredentials": false
-            },
-            "zIndex": 10
-          },
-          {
-            "id": "994a2a35-d441-4e6f-a230-53c436e3889c",
+            "id": "b3df73c1-f779-48c5-9fc7-99ae666f2ed7",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 150,
-              "y": 40
+              "x": 280,
+              "y": 20
             },
             "size": {
-              "width": 5,
-              "height": 700
+              "width": 8,
+              "height": 1140
             },
             "attrs": {
               "label": {
@@ -896,11 +896,11 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB-01 Internet vs Capa Web",
-              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "description": "Frontera de confianza identificada en la Parte 3.",
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "59be6b9e-a1bf-4660-81f7-95db5df23389",
+                  "id": "ba2024ec-8d16-4d29-98f8-75b660a14194",
                   "number": 20,
                   "title": "T-20: CSRF y SameSite no verificados",
                   "status": "Open",
@@ -915,15 +915,15 @@
             "zIndex": 0
           },
           {
-            "id": "41029f53-2110-469b-8ca4-53005679c1b2",
+            "id": "6b95a0ad-8f04-44e3-98cf-3bd62d44d2af",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 270,
-              "y": 250
+              "x": 350,
+              "y": 190
             },
             "size": {
-              "width": 300,
-              "height": 250
+              "width": 580,
+              "height": 520
             },
             "attrs": {
               "label": {
@@ -933,22 +933,22 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB-02 Capa Web vs Servicios",
-              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "description": "Frontera de confianza identificada en la Parte 3.",
               "outOfScope": false,
               "threats": []
             },
             "zIndex": 0
           },
           {
-            "id": "914d4cfe-9333-4e2e-9440-1dfb1efee14a",
+            "id": "0399f1c0-6299-438d-ad0c-37d684bd74e1",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 270,
-              "y": 600
+              "x": 350,
+              "y": 850
             },
             "size": {
-              "width": 600,
-              "height": 90
+              "width": 940,
+              "height": 130
             },
             "attrs": {
               "label": {
@@ -958,11 +958,11 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB-03 Zona Usuario vs Admin",
-              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "description": "Frontera de confianza identificada en la Parte 3.",
               "outOfScope": false,
               "threats": [
                 {
-                  "id": "d6f54dca-e25e-45f2-9ceb-839bf527e3f5",
+                  "id": "e1c6936d-20ce-4c96-a651-4bc124b0a8a8",
                   "number": 19,
                   "title": "T-19: Privilegios todo o nada por falta del rol Registrador",
                   "status": "Open",
@@ -977,15 +977,15 @@
             "zIndex": 0
           },
           {
-            "id": "3d5d5574-e72b-4fbd-a532-89c0e662b820",
+            "id": "5286c5cc-360e-41b7-813f-43a0f7104242",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 530,
-              "y": 60
+              "x": 700,
+              "y": 20
             },
             "size": {
-              "width": 480,
-              "height": 480
+              "width": 620,
+              "height": 800
             },
             "attrs": {
               "label": {
@@ -995,22 +995,22 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB-04 App vs Base de Datos",
-              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "description": "Frontera de confianza identificada en la Parte 3.",
               "outOfScope": false,
               "threats": []
             },
             "zIndex": 0
           },
           {
-            "id": "5193aac3-0e36-4acc-adac-2e7d87f18132",
+            "id": "249353d1-e4e9-4337-a2e5-751509ab2c8c",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 1020,
-              "y": 250
+              "x": 1390,
+              "y": 340
             },
             "size": {
-              "width": 5,
-              "height": 200
+              "width": 8,
+              "height": 220
             },
             "attrs": {
               "label": {
@@ -1020,22 +1020,22 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB-05 App vs PayPhone",
-              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "description": "Frontera de confianza identificada en la Parte 3.",
               "outOfScope": false,
               "threats": []
             },
             "zIndex": 0
           },
           {
-            "id": "b731303a-ebac-4889-aefd-4131e53ed04d",
+            "id": "7d75678e-f2bf-4698-ad8a-2c4342a93df5",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 250,
-              "y": 80
+              "x": 1390,
+              "y": 120
             },
             "size": {
-              "width": 850,
-              "height": 5
+              "width": 260,
+              "height": 140
             },
             "attrs": {
               "label": {
@@ -1045,22 +1045,22 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB-06 App vs SMTP",
-              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "description": "Frontera de confianza identificada en la Parte 3.",
               "outOfScope": false,
               "threats": []
             },
             "zIndex": 0
           },
           {
-            "id": "901f4c6f-a038-4e2b-a4b0-7f3b0b9ba752",
+            "id": "7a6dc2bb-202e-4004-8596-30dd7f7b8c19",
             "shape": "trust-boundary-box",
             "position": {
-              "x": 40,
-              "y": 620
+              "x": 350,
+              "y": 1080
             },
             "size": {
-              "width": 250,
-              "height": 80
+              "width": 240,
+              "height": 110
             },
             "attrs": {
               "label": {
@@ -1070,20 +1070,20 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB-07 App vs Almacen Secretos",
-              "description": "Frontera de confianza identificada en la Parte 3 del documento.",
+              "description": "Frontera de confianza identificada en la Parte 3.",
               "outOfScope": false,
               "threats": []
             },
             "zIndex": 0
           },
           {
-            "id": "1d9b1cf1-bb39-46bc-9bc1-9afcb2e37989",
+            "id": "b08a522f-fa3e-456f-9b6d-247484331b03",
             "shape": "flow",
             "source": {
-              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
             },
             "target": {
-              "cell": "eb604220-ddea-4339-ac6d-f5545f097139"
+              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
             },
             "labels": [
               {
@@ -1107,13 +1107,13 @@
             "zIndex": 5
           },
           {
-            "id": "da27aaac-91f4-4a84-bd37-f79f27e6f6ea",
+            "id": "b72b035b-523c-4106-8537-65cf0547be03",
             "shape": "flow",
             "source": {
-              "cell": "eb604220-ddea-4339-ac6d-f5545f097139"
+              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
             },
             "target": {
-              "cell": "41682835-5627-4b38-978d-8d7a45f5f786"
+              "cell": "7df1afc9-b245-4b26-acf0-413e25ee3e9d"
             },
             "labels": [
               {
@@ -1137,13 +1137,13 @@
             "zIndex": 5
           },
           {
-            "id": "c280e316-e99f-4ca4-bc8f-c0b43c766976",
+            "id": "ced42fd4-b548-415b-94e3-b39880b3d5ce",
             "shape": "flow",
             "source": {
-              "cell": "eb604220-ddea-4339-ac6d-f5545f097139"
+              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
             },
             "target": {
-              "cell": "77a2c3a5-ac38-498f-84bd-1b0a46386a54"
+              "cell": "a98c442b-62c9-4618-9c46-3979777f1be4"
             },
             "labels": [
               {
@@ -1167,13 +1167,13 @@
             "zIndex": 5
           },
           {
-            "id": "f3bc50ed-f7f2-428e-941b-a65faae69a17",
+            "id": "daa731db-a006-4514-ad3a-5811008dde81",
             "shape": "flow",
             "source": {
-              "cell": "77a2c3a5-ac38-498f-84bd-1b0a46386a54"
+              "cell": "a98c442b-62c9-4618-9c46-3979777f1be4"
             },
             "target": {
-              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
             },
             "labels": [
               {
@@ -1197,13 +1197,13 @@
             "zIndex": 5
           },
           {
-            "id": "b3c4aeeb-70c8-4a17-b220-02f9c117503d",
+            "id": "57a1f669-7fd5-4342-887b-d64f73cffaf8",
             "shape": "flow",
             "source": {
-              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
             },
             "target": {
-              "cell": "73599520-14db-490f-b97d-826895140fa5"
+              "cell": "dbc5340d-6927-4a53-adf0-134dea6f3de3"
             },
             "labels": [
               {
@@ -1227,13 +1227,13 @@
             "zIndex": 5
           },
           {
-            "id": "46e7cb74-3382-464e-b750-e8a6351b636b",
+            "id": "06106495-cd46-4359-a61e-0b8075310aff",
             "shape": "flow",
             "source": {
-              "cell": "73599520-14db-490f-b97d-826895140fa5"
+              "cell": "dbc5340d-6927-4a53-adf0-134dea6f3de3"
             },
             "target": {
-              "cell": "41682835-5627-4b38-978d-8d7a45f5f786"
+              "cell": "7df1afc9-b245-4b26-acf0-413e25ee3e9d"
             },
             "labels": [
               {
@@ -1257,13 +1257,13 @@
             "zIndex": 5
           },
           {
-            "id": "a100e4f6-abb1-40c9-9947-b2589138f5be",
+            "id": "28ad2134-3527-482e-b564-27170b99da12",
             "shape": "flow",
             "source": {
-              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
             },
             "target": {
-              "cell": "cf68b28b-8a40-4e53-b408-b011fc7e052f"
+              "cell": "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e"
             },
             "labels": [
               {
@@ -1287,13 +1287,13 @@
             "zIndex": 5
           },
           {
-            "id": "73c5b10f-35d2-47b0-8ffe-920811c2daad",
+            "id": "4e3332b7-5007-408b-87d0-516de814dd15",
             "shape": "flow",
             "source": {
-              "cell": "cf68b28b-8a40-4e53-b408-b011fc7e052f"
+              "cell": "68a9c67e-f76f-4598-87ab-0dd30a1d7a4e"
             },
             "target": {
-              "cell": "4c3fc86d-4e90-4d05-9767-4c59db53ce2e"
+              "cell": "a904cc2b-dc64-416d-b714-7f182e0a3280"
             },
             "labels": [
               {
@@ -1317,13 +1317,13 @@
             "zIndex": 5
           },
           {
-            "id": "60c2efc0-f811-40d1-8a6b-d46b0c979d4d",
+            "id": "4c90ba57-4d0f-49e1-9c11-187f54f560f0",
             "shape": "flow",
             "source": {
-              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
             },
             "target": {
-              "cell": "57045cb0-2bf2-4d56-afcd-a815c7a3163c"
+              "cell": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
             },
             "labels": [
               {
@@ -1347,13 +1347,13 @@
             "zIndex": 5
           },
           {
-            "id": "b851387b-e75f-42c1-b52a-fc4847ed2e78",
+            "id": "35cc7fe4-2f89-4aef-912d-17dcfe5f5767",
             "shape": "flow",
             "source": {
-              "cell": "57045cb0-2bf2-4d56-afcd-a815c7a3163c"
+              "cell": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
             },
             "target": {
-              "cell": "71794537-0352-4435-b8b0-e4e9e0db5670"
+              "cell": "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
             },
             "labels": [
               {
@@ -1377,13 +1377,13 @@
             "zIndex": 5
           },
           {
-            "id": "88324318-fbef-48f0-8bd4-2e3593a2900d",
+            "id": "f10c7d35-3ef6-48e7-a621-b3142c4ba56a",
             "shape": "flow",
             "source": {
-              "cell": "57045cb0-2bf2-4d56-afcd-a815c7a3163c"
+              "cell": "fcc85bee-a178-40e9-9061-ed8b3e2e0fc4"
             },
             "target": {
-              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
             },
             "labels": [
               {
@@ -1407,13 +1407,13 @@
             "zIndex": 5
           },
           {
-            "id": "a3ee9e7e-05ee-42c8-987c-76a6462ecd61",
+            "id": "f27702f2-51e5-4317-a5bf-200e8f2e0cc7",
             "shape": "flow",
             "source": {
-              "cell": "f1503e82-35af-4374-a0bb-e4cc5ed90e8c"
+              "cell": "59798db6-5f22-418f-9714-5861f89fecf5"
             },
             "target": {
-              "cell": "ebcad374-8c8d-4e9b-b910-94da3d69f26b"
+              "cell": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4"
             },
             "labels": [
               {
@@ -1437,13 +1437,13 @@
             "zIndex": 5
           },
           {
-            "id": "a83659e4-7163-42ca-b0d3-7f56c5aa1def",
+            "id": "179be8f5-3cc2-438c-9311-1fae7847511e",
             "shape": "flow",
             "source": {
-              "cell": "ebcad374-8c8d-4e9b-b910-94da3d69f26b"
+              "cell": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4"
             },
             "target": {
-              "cell": "251690e1-10e2-4a92-a2d4-646c1a14dec6"
+              "cell": "3a60c106-0a4d-45bc-aef8-a2eef064ebed"
             },
             "labels": [
               {
@@ -1467,13 +1467,13 @@
             "zIndex": 5
           },
           {
-            "id": "85cb5879-077d-4249-a747-b5966c924d67",
+            "id": "ee296c89-9adb-4724-bbab-0467b1dab375",
             "shape": "flow",
             "source": {
-              "cell": "251690e1-10e2-4a92-a2d4-646c1a14dec6"
+              "cell": "3a60c106-0a4d-45bc-aef8-a2eef064ebed"
             },
             "target": {
-              "cell": "ebcad374-8c8d-4e9b-b910-94da3d69f26b"
+              "cell": "dc9b0b07-a1d2-4937-9cd2-eba5286a2aa4"
             },
             "labels": [
               {
@@ -1497,13 +1497,13 @@
             "zIndex": 5
           },
           {
-            "id": "3b318225-1a6c-42be-9d4f-b9ad87645ddc",
+            "id": "03a7153e-e24d-4a20-ba16-6f1686742808",
             "shape": "flow",
             "source": {
-              "cell": "251690e1-10e2-4a92-a2d4-646c1a14dec6"
+              "cell": "3a60c106-0a4d-45bc-aef8-a2eef064ebed"
             },
             "target": {
-              "cell": "71794537-0352-4435-b8b0-e4e9e0db5670"
+              "cell": "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
             },
             "labels": [
               {
@@ -1527,13 +1527,13 @@
             "zIndex": 5
           },
           {
-            "id": "ebf0e0dc-7932-4e09-b13a-023ca20d360a",
+            "id": "cb7962c1-285b-40e3-9156-7ecde3fd8dfb",
             "shape": "flow",
             "source": {
-              "cell": "e2f00470-389a-482e-8b46-b699acb653f1"
+              "cell": "d82f21e9-9ca0-40ab-a319-a0139238a1c2"
             },
             "target": {
-              "cell": "70de4d8e-ebd6-4d4f-8f98-9ca701c73fef"
+              "cell": "ed58ac68-6077-49d1-981b-1e287b707a14"
             },
             "labels": [
               {
@@ -1557,13 +1557,13 @@
             "zIndex": 5
           },
           {
-            "id": "f37e0022-ad3c-44bb-b452-2967f1df8e30",
+            "id": "2fa9d71b-2b51-4aff-8928-ae857d4b32d7",
             "shape": "flow",
             "source": {
-              "cell": "9daa92a1-d57e-41d6-a2bb-c325c675e313"
+              "cell": "eddd8907-e875-4e2d-ab9b-c47976b60e53"
             },
             "target": {
-              "cell": "e2f00470-389a-482e-8b46-b699acb653f1"
+              "cell": "d82f21e9-9ca0-40ab-a319-a0139238a1c2"
             },
             "labels": [
               {
@@ -1587,13 +1587,13 @@
             "zIndex": 5
           },
           {
-            "id": "eab3089c-8075-4c08-b326-bc57f1d5b4a9",
+            "id": "1af8ce2b-f5b1-4d82-9f6f-f17e03556b84",
             "shape": "flow",
             "source": {
-              "cell": "a8329380-03ae-4049-bfd5-836893201b48"
+              "cell": "bb5984ee-320a-4e39-84ee-b850023bd637"
             },
             "target": {
-              "cell": "71794537-0352-4435-b8b0-e4e9e0db5670"
+              "cell": "344806b5-b0ef-4865-89d4-49bf2bfb75d9"
             },
             "labels": [
               {
@@ -1617,13 +1617,13 @@
             "zIndex": 5
           },
           {
-            "id": "e00a71d7-d01f-491b-b8fa-7e05825d7158",
+            "id": "24ad6fcf-e2aa-461a-a3ec-b318ea17e039",
             "shape": "flow",
             "source": {
-              "cell": "eb604220-ddea-4339-ac6d-f5545f097139"
+              "cell": "62be0819-f331-45f6-b0ef-87d2b3763bef"
             },
             "target": {
-              "cell": "2995ccad-3863-4220-a1f2-7c84e61e198f"
+              "cell": "99d9d253-beb4-4756-953f-586d6e888ecc"
             },
             "labels": [
               {
@@ -1647,13 +1647,13 @@
             "zIndex": 5
           },
           {
-            "id": "b0e6f7ec-658d-4352-a906-edd85490593a",
+            "id": "cbb75a69-2346-4d5b-9a5b-6682a1ef01cc",
             "shape": "flow",
             "source": {
-              "cell": "fbc04795-c553-480d-8400-374baeb5f5da"
+              "cell": "2fcf7509-303f-4c97-b81c-723885c906f7"
             },
             "target": {
-              "cell": "73599520-14db-490f-b97d-826895140fa5"
+              "cell": "dbc5340d-6927-4a53-adf0-134dea6f3de3"
             },
             "labels": [
               {
